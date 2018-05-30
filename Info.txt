@@ -16,7 +16,7 @@ FEATURES
 	Categories to classify tests (Only admins can manipulate categories?)
 	Automatic grading of tests
 	Import and export of tests (PDF, TXT?)
-	Host tests in specific time interval
+	Host tests in specific time intervals
 
 ~~~~~~~~~~~~~~~~~~~~~~
 
