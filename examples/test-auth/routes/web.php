@@ -15,26 +15,13 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(
-    ['middleware' => 'jwt.auth'], 
-    function() use ($router) {
-        $router->get('users', function() {
-            $users = \App\User::all();
-            return response()->json($users);
-        });
-    }
-);
+$router->group(['middleware' => 'jwt.auth'], function() use ($router) {
+    $router->get('users', function() {
+        $users = \App\User::all();
+        return response()->json($users);
+    });
+});
 
-$router->get(
-    '/seeheader',
-    [
-        'uses' => 'AuthController@seeBearerToken',
-    ]
-);
+$router->get('seeheader',['uses' => 'AuthController@seeBearerToken',]);
 
-$router->post(
-    'auth/login',
-    [
-       'uses' => 'AuthController@authenticate',
-    ]
-);
+$router->post('auth/login',['uses' => 'AuthController@authenticate',]);
