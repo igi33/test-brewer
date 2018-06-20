@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Question extends Model
 {
     /**
      * The attributes that aren't mass assignable.
@@ -13,17 +13,8 @@ class User extends Model
      */
     protected $guarded = [];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-    ];
-
     public function tests()
     {
-        return $this->hasMany('App\Test');
+        return $this->belongsToMany('App\Test', 'has_question');
     }
 }

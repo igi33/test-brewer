@@ -14,3 +14,9 @@
 $router->get('/', function () use ($router) {
     return 'Hello world!';
 });
+
+$router->group(
+
+);
+$router->get('users', ['uses' => 'UserController@index']);
+$router->get('users/{id}', ['uses' => 'UserController@show']);
