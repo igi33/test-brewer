@@ -15,7 +15,7 @@ class Test extends Model
 
     public function questions()
     {
-        return $this->belongsToMany('App\Question', 'has_question');
+        return $this->belongsToMany('App\Question', 'has_question')->withTimestamps();
     }
 
     public function user()

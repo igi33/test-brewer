@@ -12,4 +12,13 @@ class Submission extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function answers()
+    {
+        return $this->hasMany('App\SubmissionAnswer');
+    }
+
+    public function test() {
+        return $this->belongsTo('App\Test');
+    }
 }
