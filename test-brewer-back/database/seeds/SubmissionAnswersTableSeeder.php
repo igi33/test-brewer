@@ -23,7 +23,7 @@ class SubmissionAnswersTableSeeder extends Seeder
             
             // Insert submited answers to each question
             foreach ($questions as $question) {
-                var_dump($question->question_title);
+                //var_dump($question->question_title);
 
                 $subAnswer = new SubmissionAnswer([
                     'question_id' => $question->id,

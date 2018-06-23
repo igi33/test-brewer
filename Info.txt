@@ -1,22 +1,5 @@
-TEST BREWER PROJECT (Web Programming, PMF CS)
-	Miodrag Mikic
-	Igor Stosic
-
-~~~~~~~~~~~~~~~~~~~~~~
-
-IDEA
-	Participate in or create simple online tests.
-
-~~~~~~~~~~~~~~~~~~~~~~
-
-FEATURES
-	User system with admin access
-	Tests contain questions which contain answers (Multiple correct ones???)
-	Different question types (Checkbox, Radio, Text)
-	Categories to classify tests (Only admins can manipulate categories?)
-	Automatic grading of tests
-	Import and export of tests (PDF, TXT?)
-	Host tests in specific time intervals
+TEST BREWER PROJECT
+	Web Programming, PMF CS
 
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -38,16 +21,3 @@ API ROUTES
 	POST /entities
 	PUT /entities/{id}
 	DELETE /entities/{id}
-
-~~~~~~~~~~~~~~~~~~~~~~
-
-USEFUL LINKS
-	Lumen (Back End PHP Micro-Framework)
-		https://lumen.laravel.com/
-	Angular (Front End Framework)
-		https://angular.io/
-		https://material.angular.io/ Angular Material Design components
-	JSON Web Tokens (Authorization tokens for the RESTful API)
-		https://jwt.io/
-		https://medium.com/tech-tajawal/2376fd38d454 JWT authentication for Lumen
-		https://stackoverflow.com/questions/45445980 Sessions in token based authentication

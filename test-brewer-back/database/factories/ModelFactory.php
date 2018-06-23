@@ -24,7 +24,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
 
     // Possible Categories
-    $categories = array(
+    $categories = [
         'Computer Science',
         'Web Technology',
         'Sockets Theory',
@@ -34,8 +34,8 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
         'Embedded Systems',
         'Open-Source Software',
         'Operating System',
-        'Software Engineering'
-    );
+        'Software Engineering',
+    ];
 
     return [
         'category_name' => $faker->unique()->randomElement($categories),
