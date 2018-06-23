@@ -26,4 +26,14 @@ class User extends Model
     {
         return $this->hasMany('App\Test');
     }
+    
+    public function questions()
+    {
+        return $this->hasMany('App\Question');
+    }
+
+    public function submissions()
+    {
+        return $this->hasMany('App\Submission');
+    }
 }

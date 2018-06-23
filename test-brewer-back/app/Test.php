@@ -22,4 +22,9 @@ class Test extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function submissions()
+    {
+        return $this->hasMany('App\Submission');
+    }
 }

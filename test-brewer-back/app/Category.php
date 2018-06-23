@@ -12,4 +12,9 @@ class Category extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function tests()
+    {
+        return $this->hasMany('App\Test');
+    }
 }

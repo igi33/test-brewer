@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Test;
 
-use App\User;
-
-class UserController extends Controller
+class TestController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,31 +17,25 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
-        return response()->json($users);
+        $tests = Test::all();
+        return response()->json($tests);
     }
 
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return response()->json($user);
-    }
-
-    public function tests($id)
-    {
-        $tests = User::findOrFail($id)->tests;
-        return response()->json($tests);
+        $test = Test::findOrFail($id);
+        return response()->json($test);
     }
 
     public function questions($id)
     {
-        $questions = User::findOrFail($id)->questions;
+        $questions = Test::findOrFail($id)->questions;
         return response()->json($questions);
     }
 
     public function submissions($id)
     {
-        $submissions = User::findOrFail($id)->submissions;
+        $submissions = Test::findOrFail($id)->submissions;
         return response()->json($submissions);
     }
 }
