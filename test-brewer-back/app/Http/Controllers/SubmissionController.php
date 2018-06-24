@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Submission;
+use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
@@ -31,5 +32,11 @@ class SubmissionController extends Controller
     {
         $answers = Submission::findOrFail($id)->answers;
         return response()->json($answers);
+    }
+
+    // Create new Submission
+    public function store(Request $request)
+    {
+        
     }
 }

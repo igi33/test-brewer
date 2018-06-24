@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -43,5 +44,24 @@ class CategoryController extends Controller
         }
 
         return response()->json($questions);
+    }
+
+    // Create new Category
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'category_name' => 'required|unique:categories|max:50',
+            'category_description' => 'required|max:255'
+        ]);
+        
+        $cat_name = $request->category_name;
+        $cat_desc = $request->category_description;
+
+        $category = Category::create([
+            'category_name' => $cat_name,
+            'category_description' => $cat_desc
+        ]);
+        
+        return response()->json($category, 201);
     }
 }

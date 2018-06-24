@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -44,5 +45,27 @@ class UserController extends Controller
     {
         $submissions = User::findOrFail($id)->submissions;
         return response()->json($submissions);
+    }
+
+    // Create new User
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'username' => 'required|unique:users|max:50',
+            'email' => 'required|email|unique:users|max:100',
+            'password' => 'required|max:60'
+        ]);
+        
+        $username = $request->username;
+        $email = $request->email;
+        $password = app('hash')->make($request->password);
+
+        $user = User::create([
+            'username' => $username,
+            'email' => $email,
+            'password' => $password
+        ]);
+        
+        return response()->json($user, 201);
     }
 }
