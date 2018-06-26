@@ -9,11 +9,15 @@
 ## Running Migrations
 To run your unresolved migrations, execute the `migrate` Artisan command:
 ```console
-composer dump-autoload && php artisan migrate
+php artisan migrate
 ```
 For a complete rerun of all the migrations, with the optional `seed` flag which runs the seeders to populate the data, execute the following:
 ```console
-composer dump-autoload && php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed
+```
+Note that prior to running migrations, the autoloader has to be updated if there are any new classes in the classmap related to migrations and seeding:
+```console
+composer dump-autoload
 ```
 
 ## Serving the Application

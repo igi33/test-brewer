@@ -53,19 +53,63 @@ class UserController extends Controller
         $this->validate($request, [
             'username' => 'required|unique:users|max:50',
             'email' => 'required|email|unique:users|max:100',
-            'password' => 'required|max:60'
+            'password' => 'required|max:60',
         ]);
         
-        $username = $request->username;
-        $email = $request->email;
-        $password = app('hash')->make($request->password);
+        $username = $request->input('username');
+        $email = $request->input('email');
+        $password = app('hash')->make($request->input('password'));
 
         $user = User::create([
             'username' => $username,
             'email' => $email,
-            'password' => $password
+            'password' => $password,
         ]);
         
+        // TODO: Add location header for the newly created resource (absolute URL)
         return response()->json($user, 201);
     }
+
+    /**
+     * Update the specified user.
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'username' => 'required|unique:users|max:50',
+            'email' => 'required|email|unique:users|max:100',
+            'password' => 'required|max:60',
+        ]);
+
+        $user = User::findOrFail($id);
+        
+        $username = $request->input('username');
+        $email = $request->input('email');
+        $password = app('hash')->make($request->input('password'));
+
+        $user->username = $username;
+        $user->email = $email;
+        $user->password = $password;
+        $user->save();
+
+        return response()->json($user, 200);
+    }
+
+    /*
+    public function destroy($id)
+    {
+        if (User::where('id', '=', $id)->count() === 0)
+        {
+            return response('', 404);
+        }
+
+        User::destroy($id);
+
+        return response('', 204);
+    }
+    */
 }

@@ -11,7 +11,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $guarded = [];
+    protected $guarded = ['is_admin', ];
 
     /**
      * The attributes excluded from the model's JSON form.
