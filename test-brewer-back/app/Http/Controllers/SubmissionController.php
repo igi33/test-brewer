@@ -46,7 +46,8 @@ class SubmissionController extends Controller
             'user_id' => 'required|exists:users,id',
             'answers' => [
                 'required',
-                'size:' . Test::find($request->test_id)->questions()->count()
+                // 'size:' . Test::find($request->test_id)->questions()->count()
+
             ],
             'answers.*.value' => 'required',
             // Check if all questions are in has_question table
@@ -65,54 +66,69 @@ class SubmissionController extends Controller
         $test_id = $request->test_id;
         $user_id = $request->user_id;
         $answers = $request->answers;
-        $count = Test::find($request->test_id)->questions()->count();
+
+        $testQuestions = Test::find($request->test_id)->questions;
+        $count = $testQuestions->count();
         $score = 0;
+
+        $weights = [];
+        foreach ($testQuestions as $question) {
+            $weights[$question['id']] = $question->pivot['question_weight'];
+        }
+        $weightSum = array_sum($weights);
 
         // Calculate score
         foreach ($answers as $answer) {
-            $question = Question::find($answer['question_id']);
+            $qId = $answer['question_id'];
+
+            $question = Question::find($qId);
             $type = $question->question_type;
-            $corrects = $question->answers()->where('is_correct', 1)->get();
+            $weight = $weights[$qId];
+            $correctAnswers = $question->answers()->where('is_correct', 1)->get();
+            $points = 0;
+
             // Text input question
-            if ($type == 3) {
-                foreach ($corrects as $correct) {
+            if ($type === 3) {
+                foreach ($correctAnswers as $correct) {
                     if ($answer['value'][0] == $correct['answer_content']) {
-                        $score++;
+                        $points = 1;
+                        break;
                     }
                 }
             // Radio input question
-            } else if ($type == 2) {
-                $correct = $corrects[0]['id'];
+            } elseif ($type === 2) {
+                $correct = $correctAnswers[0]['id'];
                 if ($answer['value'][0] == $correct) {
-                    $score++;
+                    $points = 1;
                 }
             // Checkbox input question
-            } else {
-                $correct = array_column($corrects->toArray(), 'id');
-                foreach ($answer['value'] as  $value) {
+            } elseif ($type === 1) {
+                $correct = array_column($correctAnswers->toArray(), 'id');
+                $partialScore = 0;
+                foreach ($answer['value'] as $value) {
                     if (in_array($value, $correct)) {
-                        $score++;
+                        $partialScore++;
                     }
                 }
+                $points = $partialScore / count($correct);
             }
-        }
 
-        // Score in Percentage
-        $score /= $count;
+            $score += $points * $weight / $weightSum;
+        }
 
         // Store Submission
         $submission = Submission::create([
             'test_id' => $test_id,
             'user_id' => $user_id,
-            'score' => $score
+            'score' => $score,
         ]);
 
         // Store Submission answers
-        foreach ($answers as  $answer) {
+        foreach ($answers as $answer) {
             foreach ($answer['value'] as $value) {
                 $subAns = new SubmissionAnswer([
                     'answer_value' => $value,
-                    'question_id' => $answer['question_id']
+                    'question_id' => $answer['question_id'],
                 ]);
                 $submission->answers()->save($subAns);
             }

@@ -79,6 +79,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // AUTHORIZATION???
+
         $this->validate($request, [
             'username' => 'required|unique:users|max:50',
             'email' => 'required|email|unique:users|max:100',
@@ -110,6 +112,5 @@ class UserController extends Controller
         User::destroy($id);
 
         return response('', 204);
-    }
-    */
+    }*/
 }

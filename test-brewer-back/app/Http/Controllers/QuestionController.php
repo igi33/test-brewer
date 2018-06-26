@@ -12,7 +12,7 @@ class QuestionController extends Controller
      * Create a new controller instance.
      *
      * Question type:
-     *      1: select
+     *      1: checkbox
      *      2: radio
      *      3: input
      * 
@@ -55,9 +55,9 @@ class QuestionController extends Controller
             'question_content' => 'required|max:255',
             'question_type' => 'required|integer|between:1,3',
             'user_id' => 'required|exists:users,id',
-            'answers' => 'required|between:1,5',
+            'answers' => 'required|min:1',
             'answers.*.content' => 'required|max:255',
-            'answers.*.correct' => 'required|boolean'
+            'answers.*.correct' => 'required|boolean',
         ]);
 
         $q_title = $request->question_title;

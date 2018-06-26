@@ -51,7 +51,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'category_name' => 'required|unique:categories|max:50',
-            'category_description' => 'required|max:255'
+            'category_description' => 'required|max:255',
         ]);
         
         $cat_name = $request->category_name;
@@ -63,5 +63,39 @@ class CategoryController extends Controller
         ]);
         
         return response()->json($category, 201);
+    }
+
+    /**
+     * Update the specified category.
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'category_name' => 'required|unique:categories|max:50',
+            'category_description' => 'required|max:255',
+        ]);
+
+        $category = Category::findOrFail($id);
+        
+        $categoryName = $request->input('category_name');
+        $categoryDescription = $request->input('category_description');
+
+        $category['category_name'] = $categoryName;
+        $category['category_description'] = $categoryDescription;
+        $category->save();
+
+        return response()->json($category, 200);
+    }
+
+    
+    public function destroy($id)
+    {
+        Category::findOrFail($id)->delete();
+
+        return response('', 204);
     }
 }

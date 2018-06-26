@@ -15,7 +15,7 @@ class Question extends Model
 
     public function tests()
     {
-        return $this->belongsToMany('App\Test', 'has_question');
+        return $this->belongsToMany('App\Test', 'has_question')->withTimestamps()->withPivot(['question_weight', 'question_order']);
     }
 
     public function answers()

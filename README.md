@@ -7,11 +7,11 @@
 - Igor Stosic
 
 ## Running Migrations
-To run your unresolved migrations, execute the `migrate` Artisan command:
+To run your unresolved migrations, execute the `migrate` Artisan command from the Lumen root directory:
 ```console
 php artisan migrate
 ```
-For a complete rerun of all the migrations, with the optional `seed` flag which runs the seeders to populate the data, execute the following:
+For a complete rerun of all the migrations, with the optional `seed` flag which runs the seeders to populate data, execute the following:
 ```console
 php artisan migrate:fresh --seed
 ```
@@ -22,7 +22,7 @@ composer dump-autoload
 
 ## Serving the Application
 #### Back End
-To serve the API locally run the following command from the terminal:
+To serve the API locally run the following command from the Lumen root directory:
 ```console
 php -S localhost:8000 -t public
 ```
