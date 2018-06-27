@@ -54,12 +54,12 @@ class CategoryController extends Controller
             'category_description' => 'required|max:255',
         ]);
         
-        $cat_name = $request->category_name;
-        $cat_desc = $request->category_description;
+        $categoryName = $request->input('category_name');
+        $categoryDescription = $request->input('category_description');
 
         $category = Category::create([
-            'category_name' => $cat_name,
-            'category_description' => $cat_desc
+            'category_name' => $categoryName,
+            'category_description' => $categoryDescription
         ]);
         
         return response()->json($category, 201);
@@ -84,8 +84,10 @@ class CategoryController extends Controller
         $categoryName = $request->input('category_name');
         $categoryDescription = $request->input('category_description');
 
-        $category['category_name'] = $categoryName;
-        $category['category_description'] = $categoryDescription;
+        $category->fill([
+            'category_name' => $categoryName,
+            'category_description' => $categoryDescription
+        ]);
         $category->save();
 
         return response()->json($category, 200);

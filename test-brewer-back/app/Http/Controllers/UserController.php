@@ -93,9 +93,11 @@ class UserController extends Controller
         $email = $request->input('email');
         $password = app('hash')->make($request->input('password'));
 
-        $user->username = $username;
-        $user->email = $email;
-        $user->password = $password;
+        $user->fill([
+            'username' => $username,
+            'email' => $email,
+            'password' => $password,
+        ]);
         $user->save();
 
         return response()->json($user, 200);

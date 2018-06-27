@@ -56,24 +56,24 @@ class TestController extends Controller
             'questions.*.weight' => 'required|integer'
         ]);
 
-        $title = $request->test_title;
-        $description = $request->test_description;
-        $public = $request->has('is_public') ? $request->is_public : 0;
-        $user_id = $request->user_id;
-        $cat_id = $request->category_id;
-        $start_time = $request->start_time;
-        $end_time = $request->end_time;
-        $questions = $request->questions;
+        $title = $request->input('test_title');
+        $description = $request->input('test_description');
+        $public = $request->input('is_public', 0);
+        $userID = $request->input('user_id');
+        $catID = $request->input('category_id');
+        $startTime = $request->input('start_time');
+        $endTime = $request->input('end_time');
+        $questions = $request->input('questions');
         
         // Store test
         $test = Test::create([
             'test_title' => $title,
             'test_description' => $description,
             'is_public' => $public,
-            'start_time' => $start_time,
-            'end_time' => $end_time,
-            'user_id' => $user_id,
-            'category_id' => $cat_id
+            'start_time' => $startTime,
+            'end_time' => $endTime,
+            'user_id' => $userID,
+            'category_id' => $catID
         ]);
         
         // Store questions in has_question
@@ -84,6 +84,72 @@ class TestController extends Controller
             ]);
         }
         
-        return response()->json($test);
+        return response()->json($test, 201);
+    }
+
+    /**
+     * Update the specified test.
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'test_title' => 'required|max:50',
+            'test_description' => 'required|max:255',
+            'is_public' => 'boolean',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date|after:start_time',
+            'user_id' => 'required|exists:users,id',
+            'category_id' => 'required|exists:categories,id',
+            'questions' => 'required',
+            'questions.*.id' => 'required|exists:questions,id',
+            'questions.*.weight' => 'required|integer'
+        ]);
+
+        $test = Test::findOrFail($id);
+
+        $title = $request->input('test_title');
+        $description = $request->input('test_description');
+        $public = $request->input('is_public', 0);
+        $userID = $request->input('user_id');
+        $catID = $request->input('category_id');
+        $startTime = $request->input('start_time');
+        $endTime = $request->input('end_time');
+        $questions = $request->input('questions');
+        
+        // Update test
+        $test->fill([
+            'test_title' => $title,
+            'test_description' => $description,
+            'is_public' => $public,
+            'start_time' => $startTime,
+            'end_time' => $endTime,
+            'user_id' => $userID,
+            'category_id' => $catID
+        ]);
+        $test->save();
+
+        // Delete old questions
+        $test->questions()->detach();
+
+        // Store questions in has_question
+        foreach ($questions as $i=>$question) {
+            $test->questions()->attach($question['id'], [
+                'question_weight' => $question['weight'],
+                'question_order' => $i+1
+            ]);
+        }
+        
+        return response()->json($test, 200);
+    }
+
+    public function destroy($id)
+    {
+        Test::findOrFail($id)->delete();
+
+        return response('', 204);
     }
 }
