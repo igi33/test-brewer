@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -79,15 +80,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // AUTHORIZATION???
+        $user = User::findOrFail($id);
+
+        // Authorization
+        if (Gate::forUser($request->auth)->denies('update-user', $user)) {
+            // The user can't update his profile...
+            return response('Unauthorized action.', 403);
+        }
 
         $this->validate($request, [
             'username' => 'required|unique:users|max:50',
             'email' => 'required|email|unique:users|max:100',
             'password' => 'required|max:60',
         ]);
-
-        $user = User::findOrFail($id);
         
         $username = $request->input('username');
         $email = $request->input('email');
