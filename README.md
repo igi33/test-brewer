@@ -7,7 +7,7 @@
 - Igor Stosic
 
 ## Running Migrations
-To run your unresolved migrations, execute the `migrate` Artisan command from the Lumen root directory:
+To run your unresolved migrations, execute the `migrate` Artisan command from the **Lumen root directory**:
 ```console
 php artisan migrate
 ```
@@ -22,12 +22,15 @@ composer dump-autoload
 
 ## Serving the Application
 #### Back End
-To serve the API locally run the following command from the Lumen root directory:
+To serve the API locally run the following command from the **Lumen root directory**:
 ```console
 php -S localhost:8000 -t public
 ```
-
 #### Front End
+To build the application and start a web server locally run the following command from the **Angular root directory**:
+```console
+ng serve
+```
 
 ## Project Idea
 Participate in or create simple online tests.
