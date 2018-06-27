@@ -49,7 +49,6 @@ class TestController extends Controller
             'is_public' => 'boolean',
             'start_time' => 'required|date',
             'end_time' => 'required|date|after:start_time',
-            'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
             'questions' => 'required',
             'questions.*.id' => 'required|exists:questions,id',
@@ -59,7 +58,7 @@ class TestController extends Controller
         $title = $request->input('test_title');
         $description = $request->input('test_description');
         $public = $request->input('is_public', 0);
-        $userID = $request->input('user_id');
+        $userID = $request->auth->id;
         $catID = $request->input('category_id');
         $startTime = $request->input('start_time');
         $endTime = $request->input('end_time');
@@ -96,25 +95,31 @@ class TestController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $test = Test::findOrFail($id);
+
+        // Authorization
+        if (Gate::forUser($request->auth)->denies('update-test', $test)) {
+            // The user can't update the test...
+            return response('Unauthorized action.', 403);
+        }
+
         $this->validate($request, [
             'test_title' => 'required|max:50',
             'test_description' => 'required|max:255',
             'is_public' => 'boolean',
             'start_time' => 'required|date',
             'end_time' => 'required|date|after:start_time',
-            'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
             'questions' => 'required',
             'questions.*.id' => 'required|exists:questions,id',
             'questions.*.weight' => 'required|integer'
         ]);
 
-        $test = Test::findOrFail($id);
 
         $title = $request->input('test_title');
         $description = $request->input('test_description');
         $public = $request->input('is_public', 0);
-        $userID = $request->input('user_id');
+        $userID = $request->auth->id;
         $catID = $request->input('category_id');
         $startTime = $request->input('start_time');
         $endTime = $request->input('end_time');

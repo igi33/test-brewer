@@ -54,7 +54,6 @@ class QuestionController extends Controller
             'question_title' => 'required|max:50',
             'question_content' => 'required|max:255',
             'question_type' => 'required|integer|between:1,3',
-            'user_id' => 'required|exists:users,id',
             'answers' => 'required|min:1',
             'answers.*.content' => 'required|max:255',
             'answers.*.correct' => 'required|boolean',
@@ -63,7 +62,7 @@ class QuestionController extends Controller
         $qTitle = $request->input('question_title');
         $qContent = $request->input('question_content');
         $qType = $request->input('question_type');
-        $qUserID = $request->input('user_id');
+        $qUserID = $request->auth->id;
         $answers = $request->input('answers');
 
         
@@ -97,22 +96,28 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $question = Question::findOrFail($id);
+
+        // Authorization
+        if (Gate::forUser($request->auth)->denies('update-question', $question)) {
+            // The user can't update the question...
+            return response('Unauthorized action.', 403);
+        }
+
         $this->validate($request, [
             'question_title' => 'required|max:50',
             'question_content' => 'required|max:255',
             'question_type' => 'required|integer|between:1,3',
-            'user_id' => 'required|exists:users,id',
             'answers' => 'required|min:1',
             'answers.*.content' => 'required|max:255',
             'answers.*.correct' => 'required|boolean',
         ]);
 
-        $question = Question::findOrFail($id);
 
         $qTitle = $request->input('question_title');
         $qContent = $request->input('question_content');
         $qType = $request->input('question_type');
-        $qUserID = $request->input('user_id');
+        $qUserID = $request->auth->id;
         $answers = $request->input('answers');
 
         // Update question
