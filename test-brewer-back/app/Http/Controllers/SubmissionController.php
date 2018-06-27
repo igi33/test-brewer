@@ -55,7 +55,7 @@ class SubmissionController extends Controller
                 'required',
                 'distinct',
                 Rule::exists('has_question', 'question_id')->where(function ($query) use ($request) {
-                    return $query->where('test_id', $request->test_id);
+                    return $query->where('test_id', $request->input('test_id'));
                 })
             ]
         ]);
@@ -63,11 +63,11 @@ class SubmissionController extends Controller
         // Check if Submission time is within limits
         // CODE...
 
-        $test_id = $request->test_id;
-        $user_id = $request->user_id;
-        $answers = $request->answers;
+        $testID = $request->input('test_id');
+        $userID = $request->input('user_id');
+        $answers = $request->input('answers');
 
-        $testQuestions = Test::find($request->test_id)->questions;
+        $testQuestions = Test::find($request->input('test_id'))->questions;
         $count = $testQuestions->count();
         $score = 0;
 
@@ -118,8 +118,8 @@ class SubmissionController extends Controller
 
         // Store Submission
         $submission = Submission::create([
-            'test_id' => $test_id,
-            'user_id' => $user_id,
+            'test_id' => $testID,
+            'user_id' => $userID,
             'score' => $score,
         ]);
 
@@ -134,6 +134,6 @@ class SubmissionController extends Controller
             }
         }
         
-        return response()->json($submission);
+        return response()->json($submission, 201);
     }
 }

@@ -60,19 +60,19 @@ class QuestionController extends Controller
             'answers.*.correct' => 'required|boolean',
         ]);
 
-        $q_title = $request->question_title;
-        $q_content = $request->question_content;
-        $q_type = $request->question_type;
-        $q_user_id = $request->user_id;
-        $answers = $request->answers;
+        $qTitle = $request->input('question_title');
+        $qContent = $request->input('question_content');
+        $qType = $request->input('question_type');
+        $qUserID = $request->input('user_id');
+        $answers = $request->input('answers');
 
         
         // Store question
         $question = Question::create([
-            'question_title' => $q_title,
-            'question_content' => $q_content,
-            'question_type' => $q_type,
-            'user_id' => $q_user_id
+            'question_title' => $qTitle,
+            'question_content' => $qContent,
+            'question_type' => $qType,
+            'user_id' => $qUserID
         ]);
 
         // Store answers
@@ -84,6 +84,65 @@ class QuestionController extends Controller
             $question->answers()->save($answer);
         }
         
-        return response()->json($question);
+        return response()->json($question, 201);
+    }
+
+
+    /**
+     * Update the specified question.
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'question_title' => 'required|max:50',
+            'question_content' => 'required|max:255',
+            'question_type' => 'required|integer|between:1,3',
+            'user_id' => 'required|exists:users,id',
+            'answers' => 'required|min:1',
+            'answers.*.content' => 'required|max:255',
+            'answers.*.correct' => 'required|boolean',
+        ]);
+
+        $question = Question::findOrFail($id);
+
+        $qTitle = $request->input('question_title');
+        $qContent = $request->input('question_content');
+        $qType = $request->input('question_type');
+        $qUserID = $request->input('user_id');
+        $answers = $request->input('answers');
+
+        // Update question
+        $question->fill([
+            'question_title' => $qTitle,
+            'question_content' => $qContent,
+            'question_type' => $qType,
+            'user_id' => $qUserID
+        ]);
+        $question->save();
+
+        // Delete old answers
+        $question->answers()->delete();
+        
+        // Update answers
+        foreach ($answers as $answer) {
+            $answer = new Answer([
+                'answer_content' => $answer['content'],
+                'is_correct' => $answer['correct']
+            ]);
+            $question->answers()->save($answer);
+        }
+        
+        return response()->json($question, 200);
+    }
+
+    public function destroy($id)
+    {
+        Question::findOrFail($id)->delete();
+
+        return response('', 204);
     }
 }
