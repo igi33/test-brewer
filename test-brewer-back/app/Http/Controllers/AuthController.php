@@ -48,10 +48,9 @@ class AuthController extends BaseController
     /**
      * Authenticate a user and return the token if the provided credentials are correct.
      * 
-     * @param  \App\User   $user 
      * @return mixed
      */
-    public function authenticate(User $user) {
+    public function authenticate() {
         $this->validate($this->request, [
             'username' => 'required',
             'password'  => 'required'
@@ -69,9 +68,7 @@ class AuthController extends BaseController
         }
         // Verify the password and generate the token
         if (Hash::check($this->request->input('password'), $user->password)) {
-            return response()->json([
-                'token' => $this->jwt($user)
-            ], 200);
+            return response()->json(['user' => $user, 'token' => $this->jwt($user)], 200);
         }
         // Bad Request response
         return response()->json([

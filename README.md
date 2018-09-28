@@ -6,6 +6,9 @@
 - Miodrag Mikic
 - Igor Stosic
 
+## Requirements
+Work in progress...
+
 ## Running Migrations
 To run your unresolved migrations, execute the `migrate` Artisan command from the **Lumen root directory**:
 ```console
