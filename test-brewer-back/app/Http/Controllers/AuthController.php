@@ -37,6 +37,8 @@ class AuthController extends BaseController
         $payload = [
             'iss' => "lumen-jwt", // Issuer of the token
             'sub' => $user->id, // Subject of the token
+            'username' => $user->username,
+            'email' => $user->email,
             'iat' => time(), // Time when JWT was issued. 
             'exp' => time() + 60*60 // Expiration time
         ];
@@ -68,7 +70,7 @@ class AuthController extends BaseController
         }
         // Verify the password and generate the token
         if (Hash::check($this->request->input('password'), $user->password)) {
-            return response()->json(['user' => $user, 'token' => $this->jwt($user)], 200);
+            return response()->json($this->jwt($user), 200);
         }
         // Bad Request response
         return response()->json([

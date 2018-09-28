@@ -27,7 +27,7 @@ composer dump-autoload
 #### Back End
 To serve the API locally run the following command from the **Lumen root directory**:
 ```console
-php -S localhost:8000 -t public
+php -S 127.0.0.1:8000 -t public
 ```
 #### Front End
 To build the application and start a web server locally run the following command from the **Angular root directory**:

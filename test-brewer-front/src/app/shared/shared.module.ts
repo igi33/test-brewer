@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
+import { UserService } from './services/user.service';
+
+
 @NgModule({
   exports: [
     CommonModule,
@@ -10,5 +13,8 @@ import { MaterialModule } from '../material/material.module';
     ReactiveFormsModule,
   ],
   declarations: [],
+  providers: [
+    UserService,
+  ],
 })
 export class SharedModule { }
