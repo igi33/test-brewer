@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { SharedModule } from '../shared/shared.module';
 
 import { AuthGuard } from './guards/auth.guard';
 import { ErrorInterceptor } from './services/error.interceptor';
@@ -18,6 +22,11 @@ import { AlertService } from './services/alert.service';
   imports: [
     CommonModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule,
+  ],
+  exports: [
+    AlertComponent,
   ],
   declarations: [
     AlertComponent,

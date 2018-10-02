@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with jwt token if available
-        const token = JSON.parse(localStorage.getItem('user')).token;
-        if (token) {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        if (userData && userData.token) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${userData.token}`
                 }
             });
         }

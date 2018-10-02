@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { UserService } from './services/user.service';
 
@@ -10,7 +11,6 @@ import { UserService } from './services/user.service';
   exports: [
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule,
   ],
   declarations: [],
   providers: [
