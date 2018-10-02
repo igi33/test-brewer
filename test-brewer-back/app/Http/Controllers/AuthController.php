@@ -59,17 +59,9 @@ class AuthController extends BaseController
         ]);
         // Find the user by username
         $user = User::where('username', $this->request->input('username'))->first();
-        if (!$user) {
-            // You wil probably have some sort of helpers or whatever
-            // to make sure that you have the same response format for
-            // differents kind of responses. But let's return the 
-            // below respose for now.
-            return response()->json([
-                'error' => 'Username does not exist.'
-            ], 400);
-        }
+        
         // Verify the password and generate the token
-        if (Hash::check($this->request->input('password'), $user->password)) {
+        if ($user && Hash::check($this->request->input('password'), $user->password)) {
             return response()->json($this->jwt($user), 200);
         }
         // Bad Request response

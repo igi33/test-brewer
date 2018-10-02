@@ -3,6 +3,7 @@ import { first } from 'rxjs/operators';
 
 import { User } from '../../models/user';
 import { UserService } from '../../../shared/services/user.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +14,8 @@ export class DashboardComponent implements OnInit {
   currentUser: User;
   users: User[] = [];
 
-  constructor(private userService: UserService) {
-    this.currentUser = this.userService.getCurrentUser();
+  constructor(private userService: UserService, private authenticationService: AuthenticationService) {
+    this.currentUser = this.authenticationService.getCurrentUser();
   }
 
   ngOnInit() {
