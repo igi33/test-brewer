@@ -26,7 +26,6 @@ $router->post('auth/login', ['uses' => 'AuthController@authenticate']);
 $router->group(['middleware' => 'jwt.auth'], function() use ($router) {
     // Users
     $router->get('users', ['uses' => 'UserController@index']);
-    $router->post('users', ['uses' => 'UserController@store']);
     $router->get('users/{id}', ['uses' => 'UserController@show']);
     $router->put('users/{id}', ['uses' => 'UserController@update']);
     // $router->delete('users/{id}', ['uses' => 'UserController@destroy']);
