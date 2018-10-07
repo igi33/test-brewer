@@ -1,0 +1,62 @@
+mat-toolbar {
+    padding-left: 0px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    z-index: 3;
+}
+
+mat-toolbar > mat-icon {
+    margin-right: 20px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    background-image: url('images/logo.svg');
+    margin-left: 10px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+    padding-top: 64px;
+}
+
+.sidenav {
+    padding-top: 64px;
+    overflow: hidden;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.sidenav > a, .menuButton {
+    display: block;
+    width: 60px;
+    height: 60px;
+    min-width: auto;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuButton {
+    height: 100%;
+}
+
+.sidenav-content {
+    padding: 20px;
+}
+
