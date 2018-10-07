@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+mat-card {
+    padding: 0;
+}
+
+mat-card-content {
+    padding: 16px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+button {
+    margin: 8px 8px 0 0;
+}

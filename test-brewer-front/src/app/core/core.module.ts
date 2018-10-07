@@ -24,6 +24,7 @@ import { AlertService } from './services/alert.service';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
+    SharedModule,
   ],
   exports: [
     AlertComponent,
