@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { MatSnackBar } from '@angular/material';
-
-import { AlertComponent } from '../components/alert/alert.component';
 
 @Injectable({
   providedIn: 'root'
