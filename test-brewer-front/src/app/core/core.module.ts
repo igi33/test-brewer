@@ -17,6 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { AuthenticationService } from './services/authentication.service';
 import { AlertService } from './services/alert.service';
+import { LogregComponent } from './components/logreg/logreg.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { AlertService } from './services/alert.service';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
+    LogregComponent,
   ],
   providers: [
     AuthGuard,

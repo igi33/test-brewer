@@ -1,18 +1,14 @@
-.wrapper {
-    display: flex;
-    justify-content: center;
-}
-
-mat-card {
-    padding: 0;
-}
-
-mat-card-content {
-    padding: 16px;
+form {
+    padding: 20px;
 }
 
 .full-width {
     width: 100%;
+}
+
+.form-group {
+    display: flex;
+    justify-content: flex-end;
 }
 
 button {
