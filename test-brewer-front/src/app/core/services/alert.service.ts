@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
+
+import { AlertComponent } from '../components/alert/alert.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlertService {
-  private subject = new Subject<any>();
+  public subject = new Subject<any>();
   private keepAfterNavigationChange = false;
 
   constructor(private router: Router) {

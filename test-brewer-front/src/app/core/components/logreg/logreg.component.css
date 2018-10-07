@@ -4,11 +4,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #2964bc;
 
-    /* for fun */
+    /* for fun 
     background-image: url('https://wallpapertag.com/wallpaper/full/a/0/d/95818-minimalist-background-3840x2160-for-iphone-5s.jpg');
     background-image: url('http://yogameditacao.com.br/wp-content/uploads/2018/06/wallpapersden.com_desert-nights-moon-5k-minimalism_1920x1080.jpg');
-    background-image: url('https://7themes.su/_ph/37/30720770.png?1535094417');
+    background-image: url('https://7themes.su/_ph/37/30720770.png?1535094417');*/
+    background-image: url('../../../../assets/images/authbackground.png');
     background-size: cover;
     background-position: center;
 

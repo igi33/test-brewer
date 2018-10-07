@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
+import { AlertService } from './core/services/alert.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Test Brewer';
+  constructor(private alertService: AlertService,
+              public snackBar: MatSnackBar) {
+    this.alertService.subject.subscribe(message => {
+      // console.log('message:', message);
+      if (message) {
+        snackBar.open(message.text, null, {
+          duration: 5000,
+        });
+      }
+    });
+  }
 }

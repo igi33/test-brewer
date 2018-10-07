@@ -10,7 +10,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { ErrorInterceptor } from './services/error.interceptor';
 import { JwtInterceptor } from './services/jwt.interceptor';
 
-import { AlertComponent } from './components/alert/alert.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -27,11 +26,7 @@ import { LogregComponent } from './components/logreg/logreg.component';
     RouterModule,
     SharedModule,
   ],
-  exports: [
-    AlertComponent,
-  ],
   declarations: [
-    AlertComponent,
     LoginComponent,
     RegisterComponent,
     DashboardComponent,

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
@@ -16,9 +15,10 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
 
+  @Output() successfulRegistration = new EventEmitter<string>();
+
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
     private userService: UserService,
     private alertService: AlertService) { }
 
@@ -46,8 +46,11 @@ export class RegisterComponent implements OnInit {
         .pipe(first())
         .subscribe(
             data => {
-                this.alertService.success('Registration successful', true);
-                this.router.navigate(['/login']);
+                this.alertService.success('Registration successful');
+                this.loading = false;
+                this.submitted = false;
+                this.successfulRegistration.emit(this.f.username.value); // switch to login tab and autofill username
+                this.registerForm.reset();
             },
             error => {
                 this.alertService.error(error);

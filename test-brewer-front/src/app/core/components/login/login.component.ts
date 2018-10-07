@@ -37,6 +37,10 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
+  public prepareForm(username: string): void {
+    this.f.username.setValue(username);
+  }
+
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
