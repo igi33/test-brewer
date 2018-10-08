@@ -13,7 +13,7 @@ mat-toolbar > mat-icon {
 .logo {
     width: 40px;
     height: 40px;
-    background-image: url('images/logo.svg');
+    background-image: url('/assets/images/logo.svg');
     margin-left: 10px;
 }
 
@@ -59,4 +59,3 @@ mat-toolbar > mat-icon {
 .sidenav-content {
     padding: 20px;
 }
-

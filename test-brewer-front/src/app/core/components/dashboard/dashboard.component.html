@@ -3,11 +3,12 @@
     <div class="logo"></div>
     <h3><a mat-button >Brew a Test</a></h3>
     <a mat-button >Calendar</a>
+
     <span class="spacer"></span>
+
+    <h3>Hi {{currentUser.username}}!</h3>
     <button mat-icon-button class="iconButton"><mat-icon>search</mat-icon></button>
     <button mat-icon-button class="iconButton"><mat-icon>apps</mat-icon></button>
-
-    
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
     </button>
@@ -20,15 +21,12 @@
             <mat-icon>settings</mat-icon>
             <span>Settings</span>
         </a>
-        <a mat-menu-item [routerLink]="['/login']">
+        <a mat-menu-item [routerLink]="['/auth']">
             <mat-icon>exit_to_app</mat-icon>
             <span>Log out</span>
         </a>
     </mat-menu>
-
 </mat-toolbar>
-
-
 
 <mat-sidenav-container class="container" autosize>
 
@@ -44,24 +42,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content class="sidenav-content">
-        <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
-        </button>
-
-        <h1>Hi {{currentUser.username}}!</h1>
-        <p>You're logged in with Angular 6!!</p>
-        <h3>All registered users:</h3>
-        <ul>
-            <li *ngFor="let user of users">
-                {{user.username}} ({{user.email}})
-            </li>
-        </ul>
-        <p><a mat-button [routerLink]="['/login']">Logout</a></p>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 
 </mat-sidenav-container>
-
-
-
-
-

@@ -2,17 +2,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
-import { LoginComponent } from './core/components/login/login.component';
-import { RegisterComponent } from './core/components/register/register.component';
 import { LogregComponent} from './core/components/logreg/logreg.component';
 
 import { AuthGuard } from './core/guards/auth.guard';
+import { ShowUsersComponent } from './core/components/show-users/show-users.component';
 
 const appRoutes: Routes = [
-  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LogregComponent },
-  // { path: 'register', component: RegisterComponent },
-
+  {
+    path: '',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        children: [
+          { path: '', component: ShowUsersComponent },
+        ]
+      }
+    ]
+  },
+  { path: 'auth', component: LogregComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' },
 ];
