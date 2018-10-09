@@ -6,13 +6,14 @@
 
     <span class="spacer"></span>
 
-    <h3>Hi {{currentUser.username}}!</h3>
     <button mat-icon-button class="iconButton"><mat-icon>search</mat-icon></button>
     <button mat-icon-button class="iconButton"><mat-icon>apps</mat-icon></button>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-button [matMenuTriggerFor]="menu" class="userButton">
+        <div class="avatar"></div>
+        <h3>{{currentUser.username}}TheKing</h3>
         <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="before">
         <a mat-menu-item>
             <mat-icon>notifications</mat-icon>
             <span>Notifications</span>
@@ -31,12 +32,12 @@
 <mat-sidenav-container class="container" autosize>
 
     <mat-sidenav #drawer class="sidenav" mode="side" opened>
-        <a mat-button><mat-icon>home</mat-icon></a>
-        <a mat-button><mat-icon>favorites</mat-icon></a>
-        <a mat-button><mat-icon>dashboard</mat-icon></a>
-        <a mat-button><mat-icon>check_circle</mat-icon></a>
-        <a mat-button><mat-icon>delete</mat-icon></a>
-        <a mat-button><mat-icon>face</mat-icon></a>
+        <a mat-button routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']"><mat-icon>home</mat-icon></a>
+        <a mat-button routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/calendar']"><mat-icon>dashboard</mat-icon></a>
+        <a mat-button routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><mat-icon>favorites</mat-icon></a>
+        <a mat-button routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><mat-icon>check_circle</mat-icon></a>
+        <a mat-button routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><mat-icon>delete</mat-icon></a>
+        <a mat-button routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><mat-icon>face</mat-icon></a>
         <div class="spacer"></div>
         <a mat-button><mat-icon>settings</mat-icon></a>
     </mat-sidenav>

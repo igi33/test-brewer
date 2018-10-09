@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Test;
+use App\User;
 use Illuminate\Http\Request;
+use App\Category;
 
 class TestController extends Controller
 {
@@ -26,6 +28,50 @@ class TestController extends Controller
     {
         $test = Test::findOrFail($id);
         return response()->json($test);
+    }
+
+    public function infoAll()
+    {   
+        
+        $tests = Test::all();
+        $result = [];
+        
+        foreach ($tests as $i=>$test) {
+            $user = User::findOrFail($test['user_id']);
+            $category = Category::findOrFail($test['category_id']);
+    
+            $testInfo = [
+                'test_id' => $test['id'],
+                'test_title' => $test['test_title'],
+                'start_time' => $test['start_time'],
+                'end_time' => $test['end_time'],
+                'user_id' => $user['id'],
+                'username' => $user['username'],
+                'category_id' => $category['id'],
+                'category_name' => $category['category_name']
+            ];
+            $result[] = $testInfo;
+        }
+
+        return response()->json($result);
+    }
+
+    public function info($id)
+    {
+        $test = Test::findOrFail($id);
+        $user = User::findOrFail($test['user_id']);
+        $category = Category::findOrFail($test['category_id']);
+
+        return response()->json([
+            'test_id' => $test['id'],
+            'test_title' => $test['test_title'],
+            'start_time' => $test['start_time'],
+            'end_time' => $test['end_time'],
+            'user_id' => $user['id'],
+            'username' => $user['username'],
+            'category_id' => $category['id'],
+            'category_name' => $category['category_name']
+        ]);
     }
 
     public function questions($id)

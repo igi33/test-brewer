@@ -1,0 +1,25 @@
+<div class="testsWrapper">
+	<mat-card *ngFor="let test of testsInfo" class="testInfo">
+		<mat-card-content class="content">
+			<div class="info">
+				<p class="catTitle">{{test.test_title}}</p>
+				<p>{{test.category_name}}</p>
+				<div class="separator"></div>
+				<div class="date">
+					<mat-icon>access_time</mat-icon>
+					<span>{{test.start_time}}</span>
+				</div>
+			</div>
+			<div class="catLogoWrapper">
+				<img src="/assets/images/cat{{test.user_id % 5}}.svg" class="catLogo">
+			</div>
+		</mat-card-content>
+		<mat-card-actions class="actions">
+			<button mat-button>
+				<img class="avatar" src="/assets/images/avatar{{test.user_id % 8}}.svg">
+				<span>{{test.username}}</span>
+			</button>
+			<button mat-button>REGISTER</button>
+		</mat-card-actions>
+	</mat-card>
+</div>

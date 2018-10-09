@@ -18,6 +18,8 @@ import { AuthenticationService } from './services/authentication.service';
 import { AlertService } from './services/alert.service';
 import { LogregComponent } from './components/logreg/logreg.component';
 import { ShowUsersComponent } from './components/show-users/show-users.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { TestService } from './services/test.service';
 
 @NgModule({
   imports: [
@@ -33,11 +35,13 @@ import { ShowUsersComponent } from './components/show-users/show-users.component
     DashboardComponent,
     LogregComponent,
     ShowUsersComponent,
+    CalendarComponent,
   ],
   providers: [
     AuthGuard,
     AuthenticationService,
     AlertService,
+    TestService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ]
