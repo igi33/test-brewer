@@ -8,13 +8,12 @@ import { AlertService } from './core/services/alert.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private alertService: AlertService,
-              public snackBar: MatSnackBar) {
+  constructor(private alertService: AlertService, public snackBar: MatSnackBar) {
     this.alertService.subject.subscribe(message => {
-      // console.log('message:', message);
       if (message) {
+        const dur = message.type === 'success' ? 5000 : 7500;
         snackBar.open(message.text, null, {
-          duration: 5000,
+          duration: dur,
         });
       }
     });
