@@ -23,6 +23,11 @@ class Test extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
     public function submissions()
     {
         return $this->hasMany('App\Submission');

@@ -20,6 +20,7 @@ import { LogregComponent } from './components/logreg/logreg.component';
 import { ShowUsersComponent } from './components/show-users/show-users.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { TestService } from './services/test.service';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { TestService } from './services/test.service';
     LogregComponent,
     ShowUsersComponent,
     CalendarComponent,
+    TestComponent,
   ],
   providers: [
     AuthGuard,

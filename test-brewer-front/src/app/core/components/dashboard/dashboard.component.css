@@ -26,6 +26,8 @@ mat-toolbar > mat-icon {
 
 .userButton {
     margin-left: 30px;
+    padding-right: 0;
+    margin-right: 16px;
 }
 
 .userButton h3 {
@@ -36,7 +38,7 @@ mat-toolbar > mat-icon {
 
 .avatar {
     display: inline-block;
-    background-image: url('/assets/images/avatar.svg');
+    background-image: url('/assets/images/avatar0.svg');
     background-repeat: no-repeat;
     background-size: contain;
     width: 40px;

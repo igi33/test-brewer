@@ -12,4 +12,7 @@ class Answer extends Model
      * @var array
      */
     protected $guarded = [];
+    protected $hidden = [
+        'is_correct',
+    ];
 }

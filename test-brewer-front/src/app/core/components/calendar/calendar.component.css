@@ -75,6 +75,11 @@
     padding: 8px 20px 8px 0 !important;
 }
 
+.actions .creator {
+    padding-left: 5px;
+    margin-left: 16px;
+}
+
 .avatar {
     display: inline-block;
     width: 35px;

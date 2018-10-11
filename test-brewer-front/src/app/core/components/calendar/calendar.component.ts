@@ -20,13 +20,7 @@ export class CalendarComponent implements OnInit {
   private loadAllTestsInfo() {
     this.testService.getAllInfo().pipe(first()).subscribe(testsInfo => {
       this.testsInfo = testsInfo;
-      // cosmetic
-
     });
-  }
-
-  private attachImages() {
-    
   }
 
 }

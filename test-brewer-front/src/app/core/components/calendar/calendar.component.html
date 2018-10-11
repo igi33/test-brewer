@@ -1,9 +1,9 @@
-<div class="testsWrapper">
+<div *ngIf="testsInfo" class="testsWrapper">
 	<mat-card *ngFor="let test of testsInfo" class="testInfo">
 		<mat-card-content class="content">
 			<div class="info">
 				<p class="catTitle">{{test.test_title}}</p>
-				<p>{{test.category_name}}</p>
+				<p>{{test.category.category_name}}</p>
 				<div class="separator"></div>
 				<div class="date">
 					<mat-icon>access_time</mat-icon>
@@ -15,11 +15,11 @@
 			</div>
 		</mat-card-content>
 		<mat-card-actions class="actions">
-			<button mat-button>
+			<button mat-button class="creator">
 				<img class="avatar" src="/assets/images/avatar{{test.user_id % 8}}.svg">
-				<span>{{test.username}}</span>
+				<span>{{test.user.username}}</span>
 			</button>
-			<button mat-button>REGISTER</button>
+			<a mat-button routerLink="/test/{{test.id}}">REGISTER</a>
 		</mat-card-actions>
 	</mat-card>
 </div>

@@ -1,0 +1,39 @@
+<mat-card *ngIf="test">
+  <h2>{{test.test_title}}</h2>
+  <h3>{{test.category.category_name}}</h3>
+  <h4>Description: </h4>
+  <p class="desc">{{test.test_description}}</p>
+  <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+    <h2 class="qHeader">Questions: </h2>
+    <ul class="questions">
+      <li *ngFor="let question of test.questions; index as i">
+        <div class="question">
+          <div class="index">{{i + 1}}. </div>
+          <div class="content">{{question.question_content}}</div>
+        </div>
+        <div class="answers">
+          <!-- input -->
+          <mat-form-field *ngIf="question.question_type == 3" class="textInput">
+            <input matInput placeholder="Answer">
+          </mat-form-field>
+          <!-- check -->
+          <div *ngIf="question.question_type == 1" class="checkValues">
+            <div *ngFor="let answer of question.answers" class="answerRadioCheck">
+              <mat-checkbox value="{{answer.id}}" color="primary"></mat-checkbox>
+              <div>{{answer.answer_content}}</div>
+            </div>
+          </div>
+          <!-- radio -->
+          <mat-radio-group *ngIf="question.question_type == 2">
+            <div *ngFor="let answer of question.answers" class="answerRadioCheck">
+              <mat-radio-button value="{{answer.id}}" color="primary"></mat-radio-button>
+              <div>{{answer.answer_content}}</div>
+            </div>
+          </mat-radio-group>
+
+        </div>
+      </li>
+    </ul>
+
+  </form>
+</mat-card>
