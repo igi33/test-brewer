@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from './core/components/dashboard/dashboard.component';
-import { LogregComponent} from './core/components/logreg/logreg.component';
-import { CalendarComponent } from './core/components/calendar/calendar.component';
-import { TestComponent } from './core/components/test/test.component';
+import { AuthGuard } from './core/services/auth.guard';
 
-import { AuthGuard } from './core/guards/auth.guard';
-import { ShowUsersComponent } from './core/components/show-users/show-users.component';
+import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
+import { LogregComponent} from './shared/components/logreg/logreg.component';
+import { CalendarComponent } from './shared/components/calendar/calendar.component';
+import { TestComponent } from './shared/components/test/test.component';
+import { ShowUsersComponent } from './shared/components/show-users/show-users.component';
 
 const appRoutes: Routes = [
   {

@@ -14,7 +14,7 @@ class JwtMiddleware
     {
         $token = $request->bearerToken();
         
-        if(!$token) {
+        if (!$token) {
             // Unauthorized response if token not there
             return response()->json([
                 'error' => 'Token not provided.'
@@ -26,11 +26,11 @@ class JwtMiddleware
         } catch(ExpiredException $e) {
             return response()->json([
                 'error' => 'Provided token is expired.'
-            ], 400);
+            ], 401);
         } catch(Exception $e) {
             return response()->json([
                 'error' => 'An error while decoding token.'
-            ], 400);
+            ], 401);
         }
 
         $user = User::find($credentials->sub);

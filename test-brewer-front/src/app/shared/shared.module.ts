@@ -1,20 +1,39 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from '../material/material.module';
 
-import { UserService } from './services/user.service';
-
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LogregComponent } from './components/logreg/logreg.component';
+import { ShowUsersComponent } from './components/show-users/show-users.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
-  exports: [
+  imports: [
     CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule,
     MaterialModule,
   ],
-  declarations: [],
-  providers: [
-    UserService,
+  declarations: [
+    LoginComponent,
+    RegisterComponent,
+    DashboardComponent,
+    LogregComponent,
+    ShowUsersComponent,
+    CalendarComponent,
+    TestComponent,
+  ],
+  exports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModule,
   ],
 })
 export class SharedModule { }

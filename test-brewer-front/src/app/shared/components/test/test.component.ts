@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TestService } from '../../services/test.service';
+import { TestService } from '../../../core/services/test.service';
 import { first, flatMap } from 'rxjs/operators';
 import { ActivatedRoute} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -29,7 +29,7 @@ export class TestComponent implements OnInit {
 
     this.loadTest();
   }
-  
+
   private loadTest() {
     let id = +this.route.snapshot.paramMap.get('id');
     this.testService.getById(id).pipe(first()).subscribe(resp => {

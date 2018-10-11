@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TestService } from '../../services/test.service';
-import { first } from 'rxjs/operators';
+import { TestService } from '../../../core/services/test.service';
 import { TestInfo } from '../../models/testInfo';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calendar',
@@ -16,7 +16,7 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     this.loadAllTestsInfo();
   }
-  
+
   private loadAllTestsInfo() {
     this.testService.getAllInfo().pipe(first()).subscribe(testsInfo => {
       this.testsInfo = testsInfo;

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { TestInfo } from '../../core/models/testInfo';
-import { Test } from '../../core/models/test';
+import { TestInfo } from '../../shared/models/testInfo';
+import { Test } from '../../shared/models/test';
 
 @Injectable({
   providedIn: 'root'
