@@ -44,6 +44,22 @@ class TestController extends Controller
         return response()->json($test);
     }
 
+    public function infoAllPage(Request $request) {
+        $cat = $request->input('cat');
+
+        if ($cat == 0) {
+            $tests = Test::with('user', 'category')
+                ->orderBy('start_time')
+                ->simplePaginate(20);
+        } else {
+            $tests = Test::with('user', 'category')
+                ->where('category_id',$cat)
+                ->orderBy('start_time')
+                ->simplePaginate(20);
+        }
+        return response()->json($tests);
+    }
+
     public function questions($id)
     {
         $questions = Test::findOrFail($id)->questions;
