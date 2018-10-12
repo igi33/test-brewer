@@ -107,7 +107,12 @@ class SubmissionController extends Controller
                 $partialScore = 0;
                 foreach ($answer['value'] as $value) {
                     if (in_array($value, $correct)) {
-                        $partialScore++;
+                        ++$partialScore;
+                    } else {
+                        --$partialScore;
+                        if ($partialScore < 0) {
+                            $partialScore = 0;
+                        }
                     }
                 }
                 $points = $partialScore / count($correct);

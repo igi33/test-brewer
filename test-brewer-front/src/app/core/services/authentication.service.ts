@@ -7,29 +7,41 @@ import * as jwt_decode from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private loggedIn = false;
+  private admin = false;
+  private currentUser = null;
 
   constructor(private http: HttpClient) { }
 
   getCurrentUser() {
-    const currentUser = localStorage.getItem('user');
-    return currentUser ? JSON.parse(currentUser).data : null;
+    return this.currentUser;
+  }
+
+  isAdmin(): boolean {
+    return this.admin;
+  }
+
+  isLoggedIn(): boolean {
+    return this.loggedIn;
   }
 
   login(username: string, password: string) {
     return this.http.post<any>(`/api/auth/login`, { username: username, password: password })
       .pipe(map(token => {
           // login successful if there's a jwt token in the response
-          // EXTRACT FROM TOKEN AND STORE
-          localStorage.setItem('user', JSON.stringify({
-            data: jwt_decode(token),
-            token: token,
-          }));
+          this.loggedIn = true;
+          this.currentUser = jwt_decode(token);
+          this.admin = !!this.currentUser.isadmin; // boolean convert
+          localStorage.setItem('token', token);
           return token;
       }));
   }
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    this.loggedIn = false;
+    this.currentUser = null;
+    this.admin = false;
+    localStorage.removeItem('token');
   }
 }

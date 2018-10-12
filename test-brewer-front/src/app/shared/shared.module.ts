@@ -12,6 +12,7 @@ import { LogregComponent } from './components/logreg/logreg.component';
 import { ShowUsersComponent } from './components/show-users/show-users.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { TestComponent } from './components/test/test.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { TestComponent } from './components/test/test.component';
     ShowUsersComponent,
     CalendarComponent,
     TestComponent,
+    AdminComponent,
   ],
   exports: [
     CommonModule,
