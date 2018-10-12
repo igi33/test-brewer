@@ -35,6 +35,13 @@ class QuestionController extends Controller
         return response()->json($question);
     }
 
+    public function allFromUser(Request $request)
+    {
+        $userID = $request->auth->id;
+        $questions = Question::with('answers')->where('user_id', $userID)->orderBy('created_at', 'desc')->get();
+        return response()->json($questions);
+    }
+
     public function tests($id)
     {
         $tests = Question::findOrFail($id)->tests;

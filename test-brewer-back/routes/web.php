@@ -61,6 +61,7 @@ $router->group(['middleware' => 'jwt.auth'], function() use ($router) {
     $router->delete('questions/{id}', ['uses' => 'QuestionController@destroy']);
     $router->get('questions/{id}/answers', ['uses' => 'QuestionController@answers']);
     $router->get('questions/{id}/tests', ['uses' => 'QuestionController@tests']);
+    $router->get('questionsUser', ['uses' => 'QuestionController@allFromUser']);
     
     // Submissions
     $router->get('submissions', ['uses' => 'SubmissionController@index']);

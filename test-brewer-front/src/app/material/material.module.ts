@@ -20,6 +20,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import {MatSelectModule} from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -42,6 +45,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatRadioModule,
     ScrollDispatchModule,
     MatSelectModule,
+    MatStepperModule,
+    MatSliderModule,
+    MatExpansionModule,
   ],
   exports: [
     MatCardModule,
@@ -62,6 +68,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatRadioModule,
     ScrollDispatchModule,
     MatSelectModule,
+    MatStepperModule,
+    MatSliderModule,
+    MatExpansionModule,
   ],
   declarations: [],
 })
