@@ -1,0 +1,102 @@
+<h2>Create Question</h2>
+
+<mat-card class="wrapper">
+  <form [formGroup]="qForm" (ngSubmit)="onSubmit()">
+    <mat-vertical-stepper #stepper>
+      <mat-step>
+          <ng-template matStepLabel>Title</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Title" formControlName="question_title">
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+      </mat-step>
+      <mat-step>
+          <ng-template matStepLabel>Content</ng-template>
+          <mat-form-field class="full">
+            <input matInput placeholder="Content" formControlName="question_content">
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious type="button">Back</button>
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Type</ng-template>
+        <mat-form-field>
+          <mat-select placeholder="Type" [(value)]="type" formControlName="question_type" (selectionChange)="typeChange($event.value)">
+            <mat-option [value]="1">Checkbox</mat-option>
+            <mat-option [value]="2">Radio</mat-option>
+            <mat-option [value]="3">Input</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious type="button">Back</button>
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Answers</ng-template>
+        <!-- radio, select -->
+        <div *ngIf="type != 3">
+          <div class="sliderVal">Number of answers: <span>{{slider}}</span></div>
+          <mat-slider class="slider" min="2" max="5" step="1" color="primary" tickInterval="1" [(value)]="slider" (change)="sliderChange($event.value)"></mat-slider>
+          <div *ngFor="let a of qForm.get('answers').controls; let i = index" class="answers" formArrayName="answers">
+            <div [formGroupName]="i">
+              <mat-form-field class="full" >
+                <input matInput placeholder="Answer" formControlName="content">
+              </mat-form-field>
+              <mat-checkbox class="correct" color="primary" formControlName="correct"></mat-checkbox>
+            </div>
+          </div>
+        </div>
+        <!-- input -->
+        <div formArrayName="answers" *ngIf="type == 3">
+          <div [formGroupName]="0">
+            <mat-form-field class="full">
+              <input matInput placeholder="Answer" formControlName="content">
+            </mat-form-field>
+            <mat-checkbox class="correct" color="primary" formControlName="correct"></mat-checkbox>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious type="button">Back</button>
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <div>
+          <button mat-button matStepperPrevious type="button">Back</button>
+          <button mat-button (click)="stepper.reset()" type="button">Reset</button>
+          <button mat-flat-button color="primary">Save</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </form>
+</mat-card>
+
+<h2 class="title">Your Questions</h2>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let q of questions" class="question">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{q.question_title}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!-- question -->
+    <p>{{q.question_content}}</p>
+
+    <!-- answers -->
+    <mat-list>
+      <mat-list-item *ngFor="let a of q.answers" class="answer">
+        <div class="dot">•</div>
+        <span>{{a.answer_content}}</span>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-expansion-panel>
+</mat-accordion>

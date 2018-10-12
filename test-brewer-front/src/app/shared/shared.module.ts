@@ -12,6 +12,8 @@ import { LogregComponent } from './components/logreg/logreg.component';
 import { ShowUsersComponent } from './components/show-users/show-users.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { TestComponent } from './components/test/test.component';
+import { BrewerComponent } from './components/brewer/brewer.component';
+import { QuestionsComponent } from './components/questions/questions.component';
 import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
@@ -30,6 +32,8 @@ import { AdminComponent } from './components/admin/admin.component';
     ShowUsersComponent,
     CalendarComponent,
     TestComponent,
+    BrewerComponent,
+    QuestionsComponent,
     AdminComponent,
   ],
   exports: [
