@@ -3,6 +3,6 @@ export class User {
     username: string;
     // password: string;
     email: string;
-    isAdmin: boolean;
-    avatarUrl: string;
+    is_admin: boolean;
+    avatar_url: string;
 }

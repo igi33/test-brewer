@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +28,8 @@ import {MatSelectModule} from '@angular/material/select';
     CommonModule,
     MatCardModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatSnackBarModule,
     MatTooltipModule,
     MatButtonModule,
@@ -46,6 +50,8 @@ import {MatSelectModule} from '@angular/material/select';
   exports: [
     MatCardModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatSnackBarModule,
     MatTooltipModule,
     MatButtonModule,

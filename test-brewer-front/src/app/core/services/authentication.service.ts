@@ -13,6 +13,10 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
+  isLoggedIn(): boolean {
+    return this.loggedIn;
+  }
+
   getCurrentUser() {
     return this.currentUser;
   }
@@ -21,20 +25,27 @@ export class AuthenticationService {
     return this.admin;
   }
 
-  isLoggedIn(): boolean {
-    return this.loggedIn;
+  initToken(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.decodeAndSet(token);
+    }
   }
 
   login(username: string, password: string) {
     return this.http.post<any>(`/api/auth/login`, { username: username, password: password })
       .pipe(map(token => {
           // login successful if there's a jwt token in the response
-          this.loggedIn = true;
-          this.currentUser = jwt_decode(token);
-          this.admin = !!this.currentUser.isadmin; // boolean convert
+          this.decodeAndSet(token);
           localStorage.setItem('token', token);
           return token;
       }));
+  }
+
+  decodeAndSet(token: string): void {
+    this.loggedIn = true;
+    this.currentUser = jwt_decode(token);
+    this.admin = !!this.currentUser.isadmin; // boolean convert
   }
 
   logout() {

@@ -1,0 +1,21 @@
+mat-card {
+    display: inline-block;
+    margin: 0 40px 40px 0;
+    vertical-align: top;
+}
+
+.users-card mat-form-field {
+    width: 100%;
+}
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    padding: 0 5px;
+}
+
+.mat-column-isadmin {
+    text-align: center;
+}
+
+.cats-card {
+    max-width: 600px;
+}

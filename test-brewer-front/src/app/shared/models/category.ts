@@ -1,6 +1,6 @@
 export class Category {
     id: number;
-    title: string;
-    description: string;
-    image: string;
+    category_name: string;
+    category_description: string;
+    picture_url: string;
 }
