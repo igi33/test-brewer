@@ -18,6 +18,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -38,6 +40,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatListModule,
     MatCheckboxModule,
     MatRadioModule,
+    ScrollDispatchModule,
+    MatSelectModule,
   ],
   exports: [
     MatCardModule,
@@ -56,6 +60,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatListModule,
     MatCheckboxModule,
     MatRadioModule,
+    ScrollDispatchModule,
+    MatSelectModule,
   ],
   declarations: [],
 })

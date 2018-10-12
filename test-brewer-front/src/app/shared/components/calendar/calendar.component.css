@@ -1,11 +1,27 @@
+.calendar {
+    padding-right: 250px;
+}
+
 .testsWrapper {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: auto;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px; */
     display: flex;
     flex-wrap: wrap;
+}
+
+h3, h2 {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 20px;
+    font-weight: 400;
+    font-size: 1.3em;
+    color: #333;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 2em;
+    color: #333;
+    border-bottom: none;
 }
 
 .testInfo {
@@ -27,7 +43,7 @@
 }
 
 .info {
-    width: 180px;
+    width: 190px;
 }
 
 .date {
@@ -36,12 +52,22 @@
 }
 
 .date mat-icon {
-    margin-right: 10px;
+    margin: 0 4px 0 15px;
+}
+
+.timeDate {
+    margin-left: 5px;
+    font-weight: 500;
+}
+
+.dur {
+    font-weight: 500;
 }
 
 .catLogoWrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-right: 10px;
     flex: 1 1 auto;
 }
 
@@ -86,4 +112,24 @@
     height: 35px;
     margin-right: 10px;
     border-radius: 50%;
+}
+
+/* Scroll */
+
+.addTest {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-image: url('/assets/images/logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+
+/* Categories filter */
+
+.categories {
+    position: fixed;
+    top: 90px;
+    right: 30px;
 }

@@ -50,7 +50,7 @@ $router->group(['middleware' => 'jwt.auth'], function() use ($router) {
     $router->delete('tests/{id}', ['uses' => 'TestController@destroy']);
     $router->get('tests/{id}/questions', ['uses' => 'TestController@questions']);
     $router->get('tests/{id}/submissions', ['uses' => 'TestController@submissions']);
-    $router->get('testsInfo', ['uses' => 'TestController@infoAll']);
+    $router->get('testsInfo', ['uses' => 'TestController@infoAllPage']);
     $router->get('tests/{id}/info', ['uses' => 'TestController@info']);
 
     // Questions

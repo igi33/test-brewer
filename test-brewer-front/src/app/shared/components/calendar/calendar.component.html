@@ -1,25 +1,49 @@
-<div *ngIf="testsInfo" class="testsWrapper">
-	<mat-card *ngFor="let test of testsInfo" class="testInfo">
-		<mat-card-content class="content">
-			<div class="info">
-				<p class="catTitle">{{test.test_title}}</p>
-				<p>{{test.category.category_name}}</p>
-				<div class="separator"></div>
-				<div class="date">
-					<mat-icon>access_time</mat-icon>
-					<span>{{test.start_time}}</span>
+<div class="calendar">
+	<div *ngIf="testsByDate">
+		<div *ngFor="let kvDate of testsByDate | keyvalue">
+			<h2 class="year">{{kvDate.key}}</h2>
+			<div *ngFor="let month of kvDate.value | keyvalue">
+				<h3 class="month">{{this.monthName(month.key - 100)}}</h3>
+				<div class="testsWrapper">
+					<mat-card *ngFor="let test of month.value | keyvalue" class="testInfo">
+						<mat-card-content class="content">
+							<div class="info">
+								<p class="catTitle">{{test.value.test_title}}</p>
+								<p>{{test.value.category.category_name}}</p>
+								<div class="separator"></div>
+								<div class="date">
+									<span class="dur">{{this.duration(test.value.start_time, test.value.end_time)}}</span>m
+									<mat-icon>access_time</mat-icon>
+									<span>{{this.format(test.value.start_time) | date:'dd MMM '}}</span>
+									<span class="timeDate">{{this.format(test.value.start_time) | date:'hh:mm'}}</span>
+								</div>
+							</div>
+							<div class="catLogoWrapper">
+								<img src="/assets/images/cat{{test.value.category_id % 5}}.svg" class="catLogo">
+							</div>
+						</mat-card-content>
+						<mat-card-actions class="actions">
+							<button mat-button class="creator">
+								<img class="avatar" src="/assets/images/avatar{{test.value.user_id % 8}}.svg">
+								<span>{{test.value.user.username}}</span>
+							</button>
+							<a mat-button routerLink="/test/{{test.value.id}}">REGISTER</a>
+						</mat-card-actions>
+					</mat-card>
 				</div>
 			</div>
-			<div class="catLogoWrapper">
-				<img src="/assets/images/cat{{test.user_id % 5}}.svg" class="catLogo">
-			</div>
-		</mat-card-content>
-		<mat-card-actions class="actions">
-			<button mat-button class="creator">
-				<img class="avatar" src="/assets/images/avatar{{test.user_id % 8}}.svg">
-				<span>{{test.user.username}}</span>
-			</button>
-			<a mat-button routerLink="/test/{{test.id}}">REGISTER</a>
-		</mat-card-actions>
-	</mat-card>
+		</div>
+	</div>
+
+	<button mat-fab class="addTest" color="primary"></button>
+
+	<mat-form-field class="categories">
+		<mat-select placeholder="Category" (selectionChange)="filter($event.value)" [(value)]="selected">
+			<mat-option [value]="0">All</mat-option>
+			<mat-option *ngFor="let cat of categories" [value]="cat.id">
+			{{cat.category_name}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
 </div>
+
