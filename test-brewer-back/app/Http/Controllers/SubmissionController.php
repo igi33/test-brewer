@@ -49,7 +49,7 @@ class SubmissionController extends Controller
                 // 'size:' . Test::find($request->test_id)->questions()->count()
 
             ],
-            'answers.*.value' => 'required',
+            // 'answers.*.value' => 'required',
             // Check if all questions are in has_question table
             'answers.*.question_id' => [
                 'required',
@@ -125,7 +125,7 @@ class SubmissionController extends Controller
 
         // Store Submission answers
         foreach ($answers as $answer) {
-            foreach ($answer['value'] as $value) {
+            foreach ((array) $answer['value'] as $value) {
                 $subAns = new SubmissionAnswer([
                     'answer_value' => $value,
                     'question_id' => $answer['question_id'],

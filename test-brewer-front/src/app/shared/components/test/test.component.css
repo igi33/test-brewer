@@ -10,28 +10,32 @@ mat-card {
     margin: auto;
 }
 
-h2 {
+h1 {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 10px;
 }
 
-h3 {
-    margin-top: 0;
+h2 {
     text-align: center;
     font-weight: normal;
-    margin-bottom: 50px;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
-.desc {
+h3 {
+    margin-bottom: 7px;
+}
+
+h3.qHeader {
+    margin-bottom: 40px;
+}
+
+p.desc {
     margin-top: 0;
     margin-bottom: 50px;
-    font-style: italic
-}
-
-.qHeader {
-    margin-bottom: 50px;
-    text-align: left;
+    font-style: italic;
+    text-align: justify;
 }
 
 ul {
@@ -61,7 +65,11 @@ ul li {
     margin-right: 10px;
 }
 
-/* input style */
+.answerRadioCheck {
+    display: flex;
+    text-align: justify;
+    margin-bottom: 10px;
+}
 
 .textInput {
     box-sizing: border-box;
@@ -69,16 +77,10 @@ ul li {
     padding: 0 20px;
 }
 
-/* radio style */
-
-.answerRadioCheck {
-    display: flex;
-    margin-bottom: 10px;
-}
-
-/* checkbox style */
-
 mat-checkbox {
     margin-right: 10px;
 }
 
+button {
+    text-transform: uppercase;
+}

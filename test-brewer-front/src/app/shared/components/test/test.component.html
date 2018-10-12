@@ -1,39 +1,41 @@
 <mat-card *ngIf="test">
-  <h2>{{test.test_title}}</h2>
-  <h3>{{test.category.category_name}}</h3>
-  <h4>Description: </h4>
+  <h1>{{test.test_title}}</h1>
+  <h2>{{test.category.category_name}}</h2>
+
+  <h3>Description:</h3>
   <p class="desc">{{test.test_description}}</p>
+
   <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
-    <h2 class="qHeader">Questions: </h2>
+    <h3 class="qHeader">Questions:</h3>
     <ul class="questions">
       <li *ngFor="let question of test.questions; index as i">
         <div class="question">
-          <div class="index">{{i + 1}}. </div>
+          <div class="index">{{i + 1}}.</div>
           <div class="content">{{question.question_content}}</div>
         </div>
         <div class="answers">
           <!-- input -->
           <mat-form-field *ngIf="question.question_type == 3" class="textInput">
-            <input matInput placeholder="Answer">
+            <input matInput placeholder="Answer" [formControlName]="question.id">
           </mat-form-field>
           <!-- check -->
           <div *ngIf="question.question_type == 1" class="checkValues">
-            <div *ngFor="let answer of question.answers" class="answerRadioCheck">
-              <mat-checkbox value="{{answer.id}}" color="primary"></mat-checkbox>
-              <div>{{answer.answer_content}}</div>
+            <div *ngFor="let answer of question.answers; index as j" class="answerRadioCheck" [formArrayName]="question.id">
+              <mat-checkbox color="primary" (change)="updateCboxArray(answer.id, $event.checked, question.id)">{{answer.answer_content}}</mat-checkbox>
             </div>
           </div>
           <!-- radio -->
-          <mat-radio-group *ngIf="question.question_type == 2">
+          <mat-radio-group *ngIf="question.question_type == 2" [formControlName]="question.id">
             <div *ngFor="let answer of question.answers" class="answerRadioCheck">
-              <mat-radio-button value="{{answer.id}}" color="primary"></mat-radio-button>
-              <div>{{answer.answer_content}}</div>
+              <mat-radio-button value="{{answer.id}}" color="primary">{{answer.answer_content}}</mat-radio-button>
             </div>
           </mat-radio-group>
 
         </div>
       </li>
     </ul>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!testForm.valid">Submit</button>
 
   </form>
 </mat-card>

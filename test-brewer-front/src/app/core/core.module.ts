@@ -11,6 +11,7 @@ import { AlertService } from './services/alert.service';
 
 import { UserService } from './services/user.service';
 import { TestService } from './services/test.service';
+import { SubmissionService } from './services/submission.service';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { TestService } from './services/test.service';
     AlertService,
     UserService,
     TestService,
+    SubmissionService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ]
