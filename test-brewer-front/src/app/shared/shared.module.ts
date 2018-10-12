@@ -14,6 +14,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { TestComponent } from './components/test/test.component';
 import { BrewerComponent } from './components/brewer/brewer.component';
 import { QuestionsComponent } from './components/questions/questions.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
     TestComponent,
     BrewerComponent,
     QuestionsComponent,
+    AdminComponent,
   ],
   exports: [
     CommonModule,

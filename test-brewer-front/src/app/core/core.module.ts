@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthGuard } from './services/auth.guard';
+import { AdminGuard } from './services/admin.guard';
 
 import { ErrorInterceptor } from './services/error.interceptor';
 import { JwtInterceptor } from './services/jwt.interceptor';
@@ -18,6 +19,7 @@ import { QuestionService } from './services/question.service';
 @NgModule({
   providers: [
     AuthGuard,
+    AdminGuard,
     AuthenticationService,
     AlertService,
     UserService,

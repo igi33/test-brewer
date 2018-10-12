@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './core/services/auth.guard';
+import { AdminGuard } from './core/services/admin.guard';
 
 import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
 import { LogregComponent} from './shared/components/logreg/logreg.component';
@@ -10,6 +11,7 @@ import { TestComponent } from './shared/components/test/test.component';
 import { ShowUsersComponent } from './shared/components/show-users/show-users.component';
 import { BrewerComponent } from './shared/components/brewer/brewer.component';
 import { QuestionsComponent } from './shared/components/questions/questions.component';
+import { AdminComponent } from './shared/components/admin/admin.component';
 
 const appRoutes: Routes = [
   {
@@ -22,9 +24,15 @@ const appRoutes: Routes = [
       { path: 'test/:id', component: TestComponent },
       { path: 'brewer', component: BrewerComponent },
       { path: 'questions', component: QuestionsComponent },
-    ]
+      {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AdminGuard],
+      },
+    ],
   },
   { path: 'auth', component: LogregComponent },
+
   // otherwise redirect to home
   { path: '**', redirectTo: '' },
 ];

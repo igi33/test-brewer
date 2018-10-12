@@ -1,24 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as jwt_decode from 'jwt-decode';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthenticationService) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    const currentUser =  JSON.parse(localStorage.getItem('user'));
-    if (currentUser && currentUser.token) {
-      /*
-      const data: any = jwt_decode(currentUser.token);
-      if (Date.now() / 1000 <= data.exp) {
-        return true; // logged in so return true
-      }
-      */
+    if (this.authService.isLoggedIn()) {
       return true; // logged in so return true
     }
 
