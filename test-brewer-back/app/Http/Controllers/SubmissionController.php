@@ -90,7 +90,7 @@ class SubmissionController extends Controller
             // Text input question
             if ($type === 3) {
                 foreach ($correctAnswers as $correct) {
-                    if ($answer['value'][0] == $correct['answer_content']) {
+                    if ($answer['value'] == $correct['answer_content']) {
                         $points = 1;
                         break;
                     }
@@ -98,7 +98,7 @@ class SubmissionController extends Controller
             // Radio input question
             } elseif ($type === 2) {
                 $correct = $correctAnswers[0]['id'];
-                if ($answer['value'][0] == $correct) {
+                if ($answer['value'] == $correct) {
                     $points = 1;
                 }
             // Checkbox input question

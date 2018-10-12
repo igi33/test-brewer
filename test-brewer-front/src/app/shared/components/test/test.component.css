@@ -84,3 +84,7 @@ mat-checkbox {
 button {
     text-transform: uppercase;
 }
+
+.submit-button-container {
+    text-align: center;
+}

@@ -72,37 +72,39 @@ export class TestComponent implements OnInit {
 
   onSubmit() {
     console.log('testForm submitted data', this.testForm.value);
-    this.loading = true;
+    if (window.confirm('Are you sure you want to submit?')) {
+      this.loading = true;
 
-    const requestAnswers = [];
-    const formObject = this.testForm.value;
-    for (const key in formObject) {
-      if (formObject.hasOwnProperty(key)) {
-        const val = formObject[key];
-        requestAnswers.push({
-          question_id: key,
-          value: val,
-        });
+      const requestAnswers = [];
+      const formObject = this.testForm.value;
+      for (const key in formObject) {
+        if (formObject.hasOwnProperty(key)) {
+          const val = formObject[key];
+          requestAnswers.push({
+            question_id: key,
+            value: val,
+          });
+        }
       }
+
+      const requestBody = {
+        test_id: this.test.id,
+        user_id: this.authService.getCurrentUser().sub,
+        answers: requestAnswers,
+      };
+
+      this.submissionService.submitAnswers(requestBody).pipe(first()).subscribe(
+        resp => {
+          this.loading = false;
+
+          this.alertService.success('Test submitted successfully!');
+        },
+        error => {
+          this.loading = false;
+
+          this.alertService.error(error);
+        }
+      );
     }
-
-    const requestBody = {
-      test_id: this.test.id,
-      user_id: this.authService.getCurrentUser().sub,
-      answers: requestAnswers,
-    };
-
-    this.submissionService.submitAnswers(requestBody).pipe(first()).subscribe(
-      resp => {
-        this.loading = false;
-
-        this.alertService.success('Test submitted successfully!');
-      },
-      error => {
-        this.loading = false;
-
-        this.alertService.error(error);
-      }
-    );
   }
 }
