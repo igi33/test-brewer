@@ -48,10 +48,13 @@ export class TestComponent implements OnInit {
 
         // fill form control values
         subResp.answers.forEach((ans: any) => {
-          if (ans.question.question_type === 3 || ans.question.question_type === 2) {
+          if (ans.question.question_type === 3) {
             this.testForm.controls[ans.question_id].setValue(ans.answer_value);
-          } else if (false) {
-
+          } else if (ans.question.question_type === 2) {
+            this.testForm.controls[ans.question_id].setValue(+ans.answer_value);
+          } else if (ans.question.question_type === 1) {
+            const cboxArray = <FormArray>this.testForm.controls[ans.question_id];
+            cboxArray.push(new FormControl(ans.answer_value));
           }
         });
         console.log('controls2', this.testForm.controls);
@@ -72,6 +75,11 @@ export class TestComponent implements OnInit {
       });
       this.testForm = this.formBuilder.group(controlObject);
     });
+  }
+
+  checkedAnswer(questionId, answerId): boolean {
+    const cboxArray = <FormArray>this.testForm.controls[questionId.toString()];
+    return this.alreadyTaken && cboxArray.controls.findIndex(x => x.value === answerId.toString()) > -1;
   }
 
   updateCboxArray(id, isChecked, key) {

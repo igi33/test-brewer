@@ -11,7 +11,7 @@
     <ul class="questions">
       <li *ngFor="let question of test.questions; index as i">
         <div class="question">
-          <div class="index">(qID: {{question.id}}) {{i + 1}}.</div>
+          <div class="index">{{i + 1}}.</div>
           <div class="content">{{question.question_content}}</div>
         </div>
         <div class="answers">
@@ -22,7 +22,7 @@
           <!-- checkbox -->
           <div *ngIf="question.question_type == 1" class="checkValues">
             <div *ngFor="let answer of question.answers; index as j" class="answerRadioCheck" [formArrayName]="question.id">
-              <mat-checkbox [disabled]="alreadyTaken" color="primary" (change)="updateCboxArray(answer.id, $event.checked, question.id)">{{answer.answer_content}}</mat-checkbox>
+              <mat-checkbox [disabled]="alreadyTaken" [checked]="checkedAnswer(question.id, answer.id)" color="primary" (change)="updateCboxArray(answer.id, $event.checked, question.id)">{{answer.answer_content}}</mat-checkbox>
             </div>
           </div>
           <!-- radio -->
