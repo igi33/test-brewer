@@ -23,3 +23,8 @@ mat-progress-bar {
     left: 0;
     right: 0;
 }
+
+.eye {
+    margin-right: 20px;
+    opacity: 0.6;
+}

@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { QuestionService } from 'src/app/core/services/question.service';
 import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { Question } from '../../models/question';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css']
 })
+
 export class QuestionsComponent implements OnInit {
   qForm: FormGroup;
   slider: number = 2;
   type;
   ans: FormArray;
   questions: Question[] = [];
+  test= false;
+  @Output() change = new EventEmitter<Question>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,6 +48,16 @@ export class QuestionsComponent implements OnInit {
     this.questionService.getQuestions().pipe(first()).subscribe(questions => {
       this.questions = questions;
     });
+  }
+
+  // enable adding question to test
+  public testMode() {
+    this.test = true;
+  }
+
+  // add question to test
+  public addToTest(id) {
+    this.change.emit(this.questions[id]);
   }
 
   // create anwser

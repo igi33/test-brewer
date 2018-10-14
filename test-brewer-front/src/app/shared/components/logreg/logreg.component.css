@@ -6,10 +6,6 @@
     align-items: center;
     background-color: #2964bc;
 
-    /* for fun 
-    background-image: url('https://wallpapertag.com/wallpaper/full/a/0/d/95818-minimalist-background-3840x2160-for-iphone-5s.jpg');
-    background-image: url('http://yogameditacao.com.br/wp-content/uploads/2018/06/wallpapersden.com_desert-nights-moon-5k-minimalism_1920x1080.jpg');
-    background-image: url('https://7themes.su/_ph/37/30720770.png?1535094417');*/
     background-image: url('../../../../assets/images/authbackground.png');
     background-size: cover;
     background-position: center;
@@ -24,4 +20,30 @@
 
 mat-card {
     padding: 0;
+}
+
+h1 {
+    color: rgba(238, 238, 238, 0.836);
+    font-weight: 300;
+    font-size: 5em;
+    margin: 40px;
+    letter-spacing: 0.05em;
+    text-align: right;
+    padding-bottom: 20px;
+    padding-right: 10%;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.star1, .star2 {
+    position: absolute;
+    bottom: -2px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.star2 {
+    right: 0px;
 }

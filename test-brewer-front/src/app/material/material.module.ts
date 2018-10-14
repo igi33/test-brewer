@@ -25,6 +25,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -52,6 +55,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatStepperModule,
     MatSliderModule,
     MatExpansionModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatCardModule,
@@ -77,6 +83,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatStepperModule,
     MatSliderModule,
     MatExpansionModule,
+    MatDividerModule,
+    MatDatepickerModule,
   ],
   declarations: [],
 })

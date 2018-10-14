@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
+  hide = true;
 
   @Output() successfulRegistration = new EventEmitter<string>();
 

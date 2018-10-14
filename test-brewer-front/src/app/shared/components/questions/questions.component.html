@@ -80,7 +80,7 @@
 <h2 class="title">Your Questions</h2>
 
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let q of questions" class="question">
+  <mat-expansion-panel *ngFor="let q of questions; let i = index" class="question">
 
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -97,6 +97,11 @@
         <span>{{a.answer_content}}</span>
       </mat-list-item>
     </mat-list>
+    
+    <!-- add to test -->
+    <div class="import" *ngIf="test">
+      <button mat-flat-button (click)="addToTest(i)" class="addQuestion" color="primary">Add</button>
+    </div>
 
   </mat-expansion-panel>
 </mat-accordion>

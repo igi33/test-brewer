@@ -1,1 +1,120 @@
-<div class="panel">Brewer</div>
+<button mat-raised-button (click)="questionsPanel.toggle()" class="toggle" color="primary">Questions</button>
+<mat-sidenav-container class="container">
+
+    <mat-sidenav mode="side" position="end" #questionsPanel class="questions">
+        <div class="separator"></div>
+        <app-questions (change)="onChange($event)"></app-questions>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+
+        <form class="form" [formGroup]="testForm" (ngSubmit)="onSubmit()">
+            <h2>Create Test</h2>
+            <mat-card class="card">
+                
+                <mat-vertical-stepper #stepper>
+                    <mat-step>
+                        <ng-template matStepLabel>Description</ng-template>
+                        <div>
+                            <mat-form-field>
+                                <input matInput placeholder="Title" formControlName="test_title">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <input matInput placeholder="Description" formControlName="test_description">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button mat-button matStepperNext type="button">Next</button>
+                        </div>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Category</ng-template>
+                        <mat-form-field>
+                            <mat-select placeholder="Category" formControlName="category_id">
+                                <mat-option [value]="cat.id" *ngFor="let cat of categories">{{cat.category_name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperPrevious type="button">Back</button>
+                            <button mat-button matStepperNext type="button">Next</button>
+                        </div>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Date</ng-template>
+                        <div>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="date" placeholder="Start date" formControlName="start_time">
+                                <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                                <mat-datepicker #date ></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <input matInput type="time" placeholder="Time" formControlName="time">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <div class="sliderVal">Duration: <span>{{time}}</span> min</div>
+                            <mat-slider tickInterval="1" class="slider" min="0" max="300" step="15" color="primary" tickInterval="15" [(value)]="time"></mat-slider>
+                        </div>
+                        <div>
+                            <button mat-button matStepperNext type="button">Next</button>
+                        </div>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Done</ng-template>
+                        <div>
+                            <button mat-button matStepperPrevious type="button">Back</button>
+                            <button mat-button (click)="stepper.reset()" type="button">Reset</button>
+                            <!-- <button mat-flat-button color="primary">Save</button> -->
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+
+
+            </mat-card>
+            <h2>Test Questions</h2>
+
+            <mat-accordion *ngIf="questions.length" #accordion>
+                <mat-expansion-panel *ngFor="let q of questions; let i = index" class="question">
+                    <mat-expansion-panel-header>
+                    <mat-panel-title class="title">
+                        {{q.question_title}}
+                    </mat-panel-title>
+                    <mat-panel-description class="desc">
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <!-- question -->
+                    <p>{{q.question_content}}</p>
+                    
+                    <!-- answers -->
+                    <mat-list>
+                        <mat-list-item *ngFor="let a of q.answers" class="answer">
+                            <div class="dot">•</div>
+                            <span>{{a.answer_content}}</span>
+                        </mat-list-item>
+                    </mat-list>
+                    
+                    <mat-action-row class="actions">
+                            <div class="sliderVal">Points: <span>{{slider[i]}}</span></div>
+                            <mat-slider class="slider" min="1" max="5" step="1" color="primary" tickInterval="1" [(value)]="slider[i]"></mat-slider>
+                            <button mat-icon-button (click)="removeQuestion(i)" class="remove" color="primary" type="button">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <div class="info" *ngIf="!questions.length">
+                Open    
+                <button mat-button (click)="questionsPanel.toggle()" color="primary" type="button">Questions</button>
+                panel to add some questions to your test.
+            </div>
+            <button mat-raised-button color="primary" class="save" type="submit">Save</button>
+        </form>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+      

@@ -27,4 +27,8 @@ export class TestService {
     return this.http.get<Category[]>(`/api/categories`);
   }
 
+  submitTest(test) {
+    return this.http.post(`/api/tests`, test);
+  }
+
 }

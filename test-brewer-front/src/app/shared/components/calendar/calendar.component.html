@@ -35,7 +35,7 @@
 		</div>
 	</div>
 
-	<button mat-fab class="addTest" color="primary"></button>
+	<a mat-fab class="addTest" color="primary" [routerLink]="['/brewer']"></a>
 
 	<mat-form-field class="categories">
 		<mat-select placeholder="Category" (selectionChange)="filter($event.value)" [(value)]="selected">
