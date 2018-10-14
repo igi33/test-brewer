@@ -20,10 +20,10 @@ Participate in or create simple online tests.
 
 ## Frameworks and Requirements
 #### Back End: Lumen - PHP API Framework by Laravel
-**Lumen** version used:
-5.6.3
+Lumen version used: 5.6.3
 
 Requirements:
+
 * PHP version >= 7.1.3
 * Enabled PHP extensions:
 	* OpenSSL
@@ -31,10 +31,10 @@ Requirements:
 	* Mbstring
 
 #### Front End: Angular - TypeScript Front End Framework by Google
-**Angular CLI** version used:
-6.0.8
+Angular CLI version used: 6.0.8
 
 Requirements:
+
 * Node.js version >= 8.9
 * npm version >= 5.5.1
 
