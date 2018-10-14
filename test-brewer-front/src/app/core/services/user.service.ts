@@ -25,4 +25,8 @@ export class UserService {
   update(user: User) {
     return this.http.put(`/api/users/${user.id}`, user);
   }
+
+  promote(id: number, status) {
+    return this.http.patch(`/api/users/${id}`, { is_admin: status });
+  }
 }

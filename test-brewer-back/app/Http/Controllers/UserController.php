@@ -108,6 +108,21 @@ class UserController extends Controller
         return response()->json($user, 200);
     }
 
+    public function promote(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        // Authorization
+        if (Gate::forUser($request->auth)->denies('promote-user', $user)) {
+            return response('Unauthorized action.', 403);
+        }
+
+        $user->is_admin = $request->input('is_admin');
+        $user->save();
+
+        return response()->json(['is_admin' => $user->is_admin], 200);
+    }
+
     /*
     public function destroy($id)
     {

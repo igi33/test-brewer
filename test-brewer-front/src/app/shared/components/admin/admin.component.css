@@ -2,9 +2,10 @@ mat-card {
     display: inline-block;
     margin: 0 40px 40px 0;
     vertical-align: top;
+    max-width: 600px;
 }
 
-.users-card mat-form-field {
+mat-form-field.input-filter {
     width: 100%;
 }
 
@@ -12,10 +13,7 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
     padding: 0 5px;
 }
 
-.mat-column-isadmin {
-    text-align: center;
-}
-
-.cats-card {
-    max-width: 600px;
+h4.add-cat-header {
+    display: inline;
+    margin-right: 12px;
 }

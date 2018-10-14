@@ -12,4 +12,12 @@ export class CategoryService {
   getAll() {
     return this.http.get<Category[]>(`/api/categories`);
   }
+
+  delete(id: number) {
+    return this.http.delete(`/api/categories/${id}`);
+  }
+
+  add(catName: string) {
+    return this.http.post<Category>(`/api/categories`, { category_name: catName });
+  }
 }

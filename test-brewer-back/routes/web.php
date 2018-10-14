@@ -28,6 +28,7 @@ $router->group(['middleware' => 'jwt.auth'], function() use ($router) {
     $router->get('users', ['uses' => 'UserController@index']);
     $router->get('users/{id}', ['uses' => 'UserController@show']);
     $router->put('users/{id}', ['uses' => 'UserController@update']);
+    $router->patch('users/{id}', ['uses' => 'UserController@promote']);
     // $router->delete('users/{id}', ['uses' => 'UserController@destroy']);
     $router->get('users/{id}/tests', ['uses' => 'UserController@tests']);
     $router->get('users/{id}/questions', ['uses' => 'UserController@questions']);

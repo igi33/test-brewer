@@ -51,11 +51,11 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'category_name' => 'required|unique:categories|max:50',
-            'category_description' => 'required|max:255',
+            'category_description' => 'max:255',
         ]);
         
         $categoryName = $request->input('category_name');
-        $categoryDescription = $request->input('category_description');
+        $categoryDescription = $request->input('category_description', '');
 
         $category = Category::create([
             'category_name' => $categoryName,
