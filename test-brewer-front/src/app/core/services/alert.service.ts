@@ -24,6 +24,10 @@ export class AlertService {
     });
   }
 
+  info(message: string) {
+    this.subject.next({ type: 'info', text: message });
+  }
+
   success(message: string, keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({ type: 'success', text: message });

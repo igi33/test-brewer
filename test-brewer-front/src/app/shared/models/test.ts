@@ -4,10 +4,10 @@ import { Question } from './question';
 
 export class Test {
     id: number;
-    title: string;
-    description: string;
-    startTime: any;
-    endTime: any;
+    test_title: string;
+    test_description: string;
+    start_time: any;
+    end_time: any;
     user: User;
     category: Category;
     questions: Question[];

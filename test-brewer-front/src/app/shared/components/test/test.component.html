@@ -1,4 +1,5 @@
 <mat-card *ngIf="test">
+
   <h1>{{test.test_title}}</h1>
   <h2>{{test.category.category_name}}</h2>
 
@@ -10,24 +11,24 @@
     <ul class="questions">
       <li *ngFor="let question of test.questions; index as i">
         <div class="question">
-          <div class="index">{{i + 1}}.</div>
+          <div class="index">(qID: {{question.id}}) {{i + 1}}.</div>
           <div class="content">{{question.question_content}}</div>
         </div>
         <div class="answers">
-          <!-- input -->
+          <!-- text input -->
           <mat-form-field *ngIf="question.question_type == 3" class="textInput">
-            <input matInput placeholder="Answer" [formControlName]="question.id">
+            <input matInput placeholder="Answer" [formControlName]="question.id" autocomplete="off">
           </mat-form-field>
-          <!-- check -->
+          <!-- checkbox -->
           <div *ngIf="question.question_type == 1" class="checkValues">
             <div *ngFor="let answer of question.answers; index as j" class="answerRadioCheck" [formArrayName]="question.id">
-              <mat-checkbox color="primary" (change)="updateCboxArray(answer.id, $event.checked, question.id)">{{answer.answer_content}}</mat-checkbox>
+              <mat-checkbox [disabled]="alreadyTaken" color="primary" (change)="updateCboxArray(answer.id, $event.checked, question.id)">{{answer.answer_content}}</mat-checkbox>
             </div>
           </div>
           <!-- radio -->
           <mat-radio-group *ngIf="question.question_type == 2" [formControlName]="question.id">
             <div *ngFor="let answer of question.answers" class="answerRadioCheck">
-              <mat-radio-button value="{{answer.id}}" color="primary">{{answer.answer_content}}</mat-radio-button>
+              <mat-radio-button [value]="answer.id" color="primary">{{answer.answer_content}}</mat-radio-button>
             </div>
           </mat-radio-group>
 
@@ -35,7 +36,7 @@
       </li>
     </ul>
 
-    <div class="submit-button-container">
+    <div class="submit-button-container" *ngIf="!alreadyTaken">
       <button mat-raised-button color="primary" type="submit" [disabled]="!testForm.valid">Submit</button>
     </div>
 
