@@ -19,6 +19,7 @@ export class TestComponent implements OnInit {
   test: Test;
   testForm: FormGroup;
   loading = false;
+  alreadyTaken = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +27,8 @@ export class TestComponent implements OnInit {
     private authService: AuthenticationService,
     private testService: TestService,
     private submissionService: SubmissionService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.loadTest();
@@ -35,12 +37,31 @@ export class TestComponent implements OnInit {
   private loadTest() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.testService.getById(id).pipe(first()).subscribe(resp => {
-      console.log(resp);
-
       this.test = resp;
 
-      const controlObject: any = {};
+      const userId = this.authService.getCurrentUser().sub;
+      this.submissionService.testAlreadyTaken(this.test.id, userId).pipe(first()).subscribe((subResp: any) => {
+        console.log('subResp', subResp);
+        console.log('controls1', this.testForm.controls);
 
+        this.alreadyTaken = true;
+
+        // fill form control values
+        subResp.answers.forEach((ans: any) => {
+          if (ans.question.question_type === 3 || ans.question.question_type === 2) {
+            this.testForm.controls[ans.question_id].setValue(ans.answer_value);
+          } else if (false) {
+
+          }
+        });
+        console.log('controls2', this.testForm.controls);
+
+        this.testForm.disable();
+
+        this.alertService.info('You have already taken this test!');
+      });
+
+      const controlObject: any = {};
       this.test.questions.forEach((q: Question) => {
         // 1 is checkbox, 2 is radio, 3 is text input
         if (q.question_type === 1) {
@@ -49,12 +70,7 @@ export class TestComponent implements OnInit {
           controlObject[q.id] = [''];
         }
       });
-
-      console.log('controlObject', controlObject);
-
       this.testForm = this.formBuilder.group(controlObject);
-
-      console.log('formGroup', this.testForm);
     });
   }
 

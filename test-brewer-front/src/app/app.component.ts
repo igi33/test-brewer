@@ -16,7 +16,7 @@ export class AppComponent {
   ) {
     this.alertService.subject.subscribe(message => {
       if (message) {
-        const dur = message.type === 'success' ? 5000 : 7500;
+        const dur = message.type === 'error' ? 7500 : 5000;
         snackBar.open(message.text, null, {
           duration: dur,
         });

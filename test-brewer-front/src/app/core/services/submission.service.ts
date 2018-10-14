@@ -11,4 +11,8 @@ export class SubmissionService {
   submitAnswers(answers) {
     return this.http.post(`/api/submissions`, answers);
   }
+
+  testAlreadyTaken(testId: number, userId: number) {
+    return this.http.get(`/api/submissions/${testId}/${userId}`);
+  }
 }

@@ -32,6 +32,12 @@ class SubmissionController extends Controller
         return response()->json($submission);
     }
 
+    public function showTaken($testId, $userId)
+    {
+        $submission = Submission::with('answers')->with('answers.question')->where(['test_id' => $testId, 'user_id' => $userId])->firstOrFail();
+        return response()->json($submission);
+    }
+
     public function answers($id)
     {
         $answers = Submission::findOrFail($id)->answers;

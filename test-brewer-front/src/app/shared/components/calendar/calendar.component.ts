@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { TestService } from '../../../core/services/test.service';
 import { first } from 'rxjs/operators';
-import { TestInfo } from '../../models/testInfo';
 import { Category } from '../../models/category';
 
 import { ScrollDispatcher } from '@angular/cdk/overlay';
@@ -20,9 +19,10 @@ export class CalendarComponent implements OnInit {
   selected = 0;
 
   constructor(
-    private testService: TestService, 
+    private testService: TestService,
     public scroll: ScrollDispatcher,
-    private ngZone: NgZone) {
+    private ngZone: NgZone
+  ) {
     // detects scrolling
     this.scroll
       .scrolled(500)
@@ -35,7 +35,7 @@ export class CalendarComponent implements OnInit {
     this.loadNextInfo();
     this.loadCategories();
   }
-  
+
   private loadCategories() {
     this.testService.getCategories().pipe(first()).subscribe(categories => {
       this.categories = categories;
@@ -53,7 +53,7 @@ export class CalendarComponent implements OnInit {
   }
 
   private loadMore(data) {
-    let el = data['_elementRef']['nativeElement'];
+    const el = data['_elementRef']['nativeElement'];
     if ((el.scrollTop + el.offsetHeight) >= el.scrollHeight) {
       // you're at the bottom of the page
       this.ngZone.run(() => {
@@ -69,25 +69,24 @@ export class CalendarComponent implements OnInit {
   }
 
   private duration(date1, date2) {
-    let difference = this.diff_minutes(new Date(date1), new Date(date2));
+    const difference = this.diff_minutes(new Date(date1), new Date(date2));
     return difference;
   }
 
-  private diff_minutes(dt2, dt1) 
-  {
-    let diff =(dt2.getTime() - dt1.getTime()) / 1000;
+  private diff_minutes(dt2, dt1) {
+    let diff = (dt2.getTime() - dt1.getTime()) / 1000;
     diff /= 60;
-    return Math.abs(Math.round(diff)); 
+    return Math.abs(Math.round(diff));
   }
 
   // Show months
 
   private monthName(n) {
     const monthNames = [
-        "January", "February", "March",
-        "April", "May", "June",
-        "July", "August", "September",
-        "October", "November", "December"
+        'January', 'February', 'March',
+        'April', 'May', 'June',
+        'July', 'August', 'September',
+        'October', 'November', 'December'
     ];
     return monthNames[n];
   }
@@ -98,9 +97,9 @@ export class CalendarComponent implements OnInit {
     // store new tests
     tests.forEach(test => {
 
-      let date = this.format(test['start_time']);
-      let year = date.getFullYear();
-      let month = date.getMonth()+100;
+      const date = this.format(test['start_time']);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 100;
       // create year if not exist
       if (!(year in this.testsByDate)) {
         this.testsByDate[year] = {};
@@ -110,7 +109,7 @@ export class CalendarComponent implements OnInit {
         this.testsByDate[year][month] = [];
       }
       // store test
-      this.testsByDate[year][month].push(test); 
+      this.testsByDate[year][month].push(test);
     });
   }
 

@@ -101,6 +101,10 @@ h2 {
     padding: 8px 20px 8px 0 !important;
 }
 
+a.view-test {
+    text-transform: uppercase;
+}
+
 .actions .creator {
     padding-left: 5px;
     margin-left: 16px;

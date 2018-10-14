@@ -68,6 +68,7 @@ $router->group(['middleware' => 'jwt.auth'], function() use ($router) {
     $router->get('submissions', ['uses' => 'SubmissionController@index']);
     $router->post('submissions', ['uses' => 'SubmissionController@store']);
     $router->get('submissions/{id}', ['uses' => 'SubmissionController@show']);
+    $router->get('submissions/{testid}/{userid}', ['uses' => 'SubmissionController@showTaken']);
     // $router->put('submissions/{id}', ['uses' => 'SubmissionController@update']);
     // $router->delete('submissions/{id}', ['uses' => 'SubmissionController@destroy']);
     $router->get('submissions/{id}/answers', ['uses' => 'SubmissionController@answers']);
