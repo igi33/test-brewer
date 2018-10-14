@@ -6,8 +6,37 @@
 - Miodrag Mikic
 - Igor Stosic
 
-## Requirements
-Work in progress...
+## Project Idea
+Participate in or create simple online tests.
+
+## Features
+- User system with admin access
+- Tests contain questions which contain answers
+- Different question types (Checkbox, Radio, Text)
+- Categories to classify tests (Admins can manipulate categories)
+- Automatic grading of tests
+- Import and export of tests (PDF, XSLX, TXT)
+- Host tests in specific time interval
+
+## Frameworks and Requirements
+#### Back End: Lumen - PHP API Framework by Laravel
+**Lumen** version used:
+5.6.3
+
+Requirements:
+* PHP version >= 7.1.3
+* Enabled PHP extensions:
+	* OpenSSL
+	* PDO
+	* Mbstring
+
+#### Front End: Angular - TypeScript Front End Framework by Google
+**Angular CLI** version used:
+6.0.8
+
+Requirements:
+* Node.js version >= 8.9
+* npm version >= 5.5.1
 
 ## Running Migrations
 To run your unresolved migrations, execute the `migrate` Artisan command from the **Lumen root directory**:
@@ -35,22 +64,11 @@ To build the application and start a web server locally run the following comman
 ng serve
 ```
 
-## Project Idea
-Participate in or create simple online tests.
-
-## Features
-- User system with admin access
-- Tests contain questions which contain answers
-- Different question types (Checkbox, Radio, Text)
-- Categories to classify tests (Admins can manipulate categories)
-- Automatic grading of tests
-- Import and export of tests (PDF, XSLX, TXT)
-- Host tests in specific time interval
-
 ## Useful Links
 * [Lumen](https://lumen.laravel.com/) - Back End PHP Micro-Framework
 * [Angular](https://angular.io/) - Front End Framework
-	* [Material](https://material.angular.io/) - Angular Material Design components
-* [JSON Web Tokens](https://jwt.io/) - Authorization tokens for the RESTful API
-	* [JWT Tutorial](https://medium.com/tech-tajawal/2376fd38d454) - JWT authentication for Lumen
-	* [JWT Sessions](https://stackoverflow.com/questions/45445980) - Sessions in token based authentication
+	* [Angular CLI](https://cli.angular.io/) - Tool to initialize, develop, scaffold and maintain Angular applications
+	* [Angular Material Design](https://material.angular.io/) - Angular Material Design components
+	* [Node.js](https://nodejs.org) - JavaScript runtime environment
+	* [npm](https://www.npmjs.com/) - Package manager for Javascript. Ships together with Node
+* [JSON Web Tokens](https://jwt.io/) - Authorization tokens for a RESTful API
