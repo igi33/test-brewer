@@ -49,12 +49,12 @@ class TestController extends Controller
 
         if ($cat == 0) {
             $tests = Test::with('user', 'category')
-                ->orderBy('start_time')
+                ->orderBy('start_time','desc')
                 ->simplePaginate(20);
         } else {
             $tests = Test::with('user', 'category')
                 ->where('category_id',$cat)
-                ->orderBy('start_time')
+                ->orderBy('start_time','desc')
                 ->simplePaginate(20);
         }
         return response()->json($tests);

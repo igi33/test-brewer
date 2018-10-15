@@ -7,6 +7,7 @@ import { Category } from '../../models/category';
 import { QuestionsComponent } from '../questions/questions.component';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-brewer',
@@ -21,11 +22,13 @@ export class BrewerComponent implements OnInit {
   slider: number[] = [];
   @ViewChild(QuestionsComponent) qPanel: QuestionsComponent;
   @ViewChildren(MatExpansionPanel) panels: QueryList<MatExpansionPanel>;
+  mode = 'side';
 
   constructor(
     private formBuilder: FormBuilder,
     private testService: TestService,
     private alertService: AlertService,
+    public breakpointObserver: BreakpointObserver,
   ) { }
 
   ngOnInit() {
@@ -39,6 +42,21 @@ export class BrewerComponent implements OnInit {
     });
     this.loadCategories();
     this.qPanel.testMode();
+
+    // screen size observer
+    this.breakpointObserver
+      .observe(['(min-width: 1280px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          // viewport > 1280
+          this.mode = 'side';
+        } else {
+          // viewport < 1280
+          this.mode = 'over';
+        }
+    });
+
+ 
   }
 
   private loadCategories() {

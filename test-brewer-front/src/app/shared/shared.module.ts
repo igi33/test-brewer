@@ -9,7 +9,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LogregComponent } from './components/logreg/logreg.component';
-import { ShowUsersComponent } from './components/show-users/show-users.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { TestComponent } from './components/test/test.component';
 import { BrewerComponent } from './components/brewer/brewer.component';
@@ -29,7 +28,6 @@ import { AdminComponent } from './components/admin/admin.component';
     RegisterComponent,
     DashboardComponent,
     LogregComponent,
-    ShowUsersComponent,
     CalendarComponent,
     TestComponent,
     BrewerComponent,

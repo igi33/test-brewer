@@ -1,8 +1,8 @@
 <div class="calendar">
 	<div *ngIf="testsByDate">
-		<div *ngFor="let kvDate of testsByDate | keyvalue">
+		<div *ngFor="let kvDate of testsByDate | keyvalue:descOrder">
 			<h2 class="year">{{kvDate.key}}</h2>
-			<div *ngFor="let month of kvDate.value | keyvalue">
+			<div *ngFor="let month of kvDate.value | keyvalue:descOrder">
 				<h3 class="month">{{this.monthName(month.key - 100)}}</h3>
 				<div class="testsWrapper">
 					<mat-card *ngFor="let test of month.value | keyvalue" class="testInfo">
