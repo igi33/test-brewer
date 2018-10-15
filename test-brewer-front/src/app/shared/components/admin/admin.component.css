@@ -1,8 +1,39 @@
-mat-card {
-    display: inline-block;
-    margin: 0 40px 40px 0;
-    vertical-align: top;
-    max-width: 600px;
+.wrapper {
+    max-width: 800px;
+    margin: auto;
+}
+
+::ng-deep .mat-tab-label-content {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #555;
+
+}
+
+.card {
+    margin: 40px;
+    padding: 24px 50px;
+    padding-top: 40px;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    font-weight: 500;
+    text-align: center;
+    color: #333;
+}
+
+.content {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
 }
 
 mat-form-field.input-filter {
