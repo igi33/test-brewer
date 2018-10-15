@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::with('submissions')->findOrFail($id);
+        $user = User::with('submissions')->with('submissions.test')->findOrFail($id);
         return response()->json($user);
     }
 

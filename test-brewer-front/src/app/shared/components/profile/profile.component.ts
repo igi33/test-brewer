@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-profile',
@@ -9,11 +11,17 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  displayedSubmissionColumns: string[] = ['id', 'title', 'created_at', 'score'];
+  submissionDataSource: MatTableDataSource<any> = new MatTableDataSource([]);
+  @ViewChild('submissionPaginator') submissionPaginator: MatPaginator;
+  @ViewChild('submissionTable') submissionSort: MatSort;
   user: any;
 
   constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
+    this.submissionDataSource.paginator = this.submissionPaginator;
+    this.submissionDataSource.sort = this.submissionSort;
     this.loadProfile();
   }
 
@@ -21,9 +29,22 @@ export class ProfileComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.userService.getById(id).pipe(first()).subscribe(resp => {
       this.user = resp;
-      console.log('response', resp);
+      this.fixSort();
+    });
+  }
+  
+  // for to be able to sort
+  fixSort() {
+    console.log(this.user);
+
+    this.user.submissions.forEach(element => {
+      console.log('cao');
+      element['title'] = element['test']['test_title'];
     });
 
+    // fill the table
+    console.log(this.user);
+    this.submissionDataSource.data = this.user['submissions'];
   }
 
 }
