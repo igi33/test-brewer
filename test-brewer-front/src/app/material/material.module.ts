@@ -28,6 +28,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from "@angular/material";
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   imports: [
@@ -58,6 +59,7 @@ import {MatNativeDateModule} from "@angular/material";
     MatDividerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    LayoutModule,
   ],
   exports: [
     MatCardModule,
@@ -85,6 +87,7 @@ import {MatNativeDateModule} from "@angular/material";
     MatExpansionModule,
     MatDividerModule,
     MatDatepickerModule,
+    LayoutModule,
   ],
   declarations: [],
 })

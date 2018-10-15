@@ -8,7 +8,6 @@ import { DashboardComponent } from './shared/components/dashboard/dashboard.comp
 import { LogregComponent} from './shared/components/logreg/logreg.component';
 import { CalendarComponent } from './shared/components/calendar/calendar.component';
 import { TestComponent } from './shared/components/test/test.component';
-import { ShowUsersComponent } from './shared/components/show-users/show-users.component';
 import { BrewerComponent } from './shared/components/brewer/brewer.component';
 import { QuestionsComponent } from './shared/components/questions/questions.component';
 import { AdminComponent } from './shared/components/admin/admin.component';
@@ -20,7 +19,7 @@ const appRoutes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: ShowUsersComponent },
+      { path: '', redirectTo: 'calendar', pathMatch: 'full' },
       { path: 'calendar', component: CalendarComponent },
       { path: 'test/:id', component: TestComponent },
       { path: 'brewer', component: BrewerComponent },
@@ -32,7 +31,7 @@ const appRoutes: Routes = [
   { path: 'auth', component: LogregComponent },
 
   // otherwise redirect to home
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: 'calendar' },
 ];
 
 @NgModule({

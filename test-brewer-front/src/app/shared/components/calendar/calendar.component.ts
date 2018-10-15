@@ -92,8 +92,6 @@ export class CalendarComponent implements OnInit {
   }
 
   private showMonths(tests) {
-
-
     // store new tests
     tests.forEach(test => {
 
@@ -111,6 +109,10 @@ export class CalendarComponent implements OnInit {
       // store test
       this.testsByDate[year][month].push(test);
     });
+  }
+
+  descOrder = (a, b) => {
+    if(a.key < b.key) return b.key;
   }
 
   // Filter by Category
