@@ -66,8 +66,7 @@ class SubmissionController extends Controller
             ]
         ]);
 
-        // Check if Submission time is within limits
-        // CODE...
+        // TODO: Check if Submission time is within limits here
 
         $testID = $request->input('test_id');
         $userID = $request->input('user_id');
@@ -109,19 +108,19 @@ class SubmissionController extends Controller
                 }
             // Checkbox input question
             } elseif ($type === 1) {
-                $correct = array_column($correctAnswers->toArray(), 'id');
+                $correctAnswerIds = array_column($correctAnswers->toArray(), 'id');
                 $partialScore = 0;
-                foreach ($answer['value'] as $value) {
-                    if (in_array($value, $correct)) {
+                foreach ($answer['value'] as $submittedAnswerId) {
+                    if (in_array($submittedAnswerId, $correctAnswerIds)) {
                         ++$partialScore;
                     } else {
                         --$partialScore;
-                        if ($partialScore < 0) {
-                            $partialScore = 0;
-                        }
                     }
                 }
-                $points = $partialScore / count($correct);
+                if ($partialScore < 0) {
+                    $partialScore = 0;
+                }
+                $points = $partialScore / count($correctAnswerIds);
             }
 
             $score += $points * $weight / $weightSum;

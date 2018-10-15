@@ -41,8 +41,7 @@ export class TestComponent implements OnInit {
 
       const userId = this.authService.getCurrentUser().sub;
       this.submissionService.testAlreadyTaken(this.test.id, userId).pipe(first()).subscribe((subResp: any) => {
-        console.log('subResp', subResp);
-        console.log('controls1', this.testForm.controls);
+        // console.log('subResp', subResp);
 
         this.alreadyTaken = true;
 
@@ -57,11 +56,11 @@ export class TestComponent implements OnInit {
             cboxArray.push(new FormControl(ans.answer_value));
           }
         });
-        console.log('controls2', this.testForm.controls);
+        // console.log('controls', this.testForm.controls);
 
         this.testForm.disable();
 
-        this.alertService.info('You have already taken this test!');
+        this.alertService.info('You have already taken this test! See the results in your profile.');
       });
 
       const controlObject: any = {};
@@ -95,7 +94,7 @@ export class TestComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('testForm submitted data', this.testForm.value);
+    // console.log('testForm submitted data', this.testForm.value);
     if (window.confirm('Are you sure you want to submit?')) {
       this.loading = true;
 
@@ -120,8 +119,10 @@ export class TestComponent implements OnInit {
       this.submissionService.submitAnswers(requestBody).pipe(first()).subscribe(
         resp => {
           this.loading = false;
+          this.alreadyTaken = true;
+          this.testForm.disable();
 
-          this.alertService.success('Test submitted successfully!');
+          this.alertService.success('Test submitted successfully! See the results in your profile.');
         },
         error => {
           this.loading = false;
