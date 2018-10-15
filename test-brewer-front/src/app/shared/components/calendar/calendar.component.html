@@ -23,11 +23,11 @@
 							</div>
 						</mat-card-content>
 						<mat-card-actions class="actions">
-							<button mat-button class="creator">
+							<a mat-button [routerLink]="['/profile', test.value.user_id]" class="creator">
 								<img class="avatar" src="/assets/images/avatar{{test.value.user_id % 8}}.svg">
 								<span>{{test.value.user.username}}</span>
-							</button>
-							<a class="view-test" mat-button routerLink="/test/{{test.value.id}}">View Test</a>
+							</a>
+							<a class="view-test" mat-button [routerLink]="['/test', test.value.id]">View Test</a>
 						</mat-card-actions>
 					</mat-card>
 				</div>
