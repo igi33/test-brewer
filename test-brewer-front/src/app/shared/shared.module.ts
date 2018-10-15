@@ -14,6 +14,7 @@ import { TestComponent } from './components/test/test.component';
 import { BrewerComponent } from './components/brewer/brewer.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { AdminComponent } from './components/admin/admin.component';
     BrewerComponent,
     QuestionsComponent,
     AdminComponent,
+    ProfileComponent,
   ],
   exports: [
     CommonModule,

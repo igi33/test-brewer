@@ -35,7 +35,7 @@
         <a mat-button matTooltipPosition="after" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/calendar']" matTooltip="Calendar"><mat-icon>dashboard</mat-icon></a>
         <a mat-button matTooltipPosition="after" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/brewer']" matTooltip="Test Brewer"><mat-icon>description</mat-icon></a>
         <a mat-button matTooltipPosition="after" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/questions']" matTooltip="Questions"><mat-icon>check_circle</mat-icon></a>
-        <a mat-button matTooltipPosition="after" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" matTooltip="Profile"><mat-icon>face</mat-icon></a>
+        <a mat-button matTooltipPosition="after" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/profile', currentUser.sub]" matTooltip="My Profile"><mat-icon>face</mat-icon></a>
         <a mat-button matTooltipPosition="after" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/admin']" *ngIf="currentUser.isadmin" matTooltip="Admin Panel"><mat-icon>perm_data_setting</mat-icon></a>
         <div class="spacer"></div>
         <a mat-button matTooltipPosition="after" matTooltip="Settings"><mat-icon>settings</mat-icon></a>

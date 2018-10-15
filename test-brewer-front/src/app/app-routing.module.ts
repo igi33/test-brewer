@@ -11,6 +11,7 @@ import { TestComponent } from './shared/components/test/test.component';
 import { BrewerComponent } from './shared/components/brewer/brewer.component';
 import { QuestionsComponent } from './shared/components/questions/questions.component';
 import { AdminComponent } from './shared/components/admin/admin.component';
+import { ProfileComponent } from './shared/components/profile/profile.component';
 
 const appRoutes: Routes = [
   {
@@ -20,14 +21,11 @@ const appRoutes: Routes = [
     children: [
       { path: '', redirectTo: 'calendar', pathMatch: 'full' },
       { path: 'calendar', component: CalendarComponent },
-      { path: 'test/:id', component: TestComponent },
+      { path: 'test/:id', component: TestComponent, pathMatch: 'full' },
       { path: 'brewer', component: BrewerComponent },
       { path: 'questions', component: QuestionsComponent },
-      {
-        path: 'admin',
-        component: AdminComponent,
-        canActivate: [AdminGuard],
-      },
+      { path: 'profile/:id', component: ProfileComponent, pathMatch: 'full' },
+      { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
     ],
   },
   { path: 'auth', component: LogregComponent },
