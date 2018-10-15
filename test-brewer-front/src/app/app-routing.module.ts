@@ -21,10 +21,10 @@ const appRoutes: Routes = [
     children: [
       { path: '', redirectTo: 'calendar', pathMatch: 'full' },
       { path: 'calendar', component: CalendarComponent },
-      { path: 'test/:id', component: TestComponent },
+      { path: 'test/:id', component: TestComponent, pathMatch: 'full' },
       { path: 'brewer', component: BrewerComponent },
       { path: 'questions', component: QuestionsComponent },
-      { path: 'profile/:id', component: ProfileComponent },
+      { path: 'profile/:id', component: ProfileComponent, pathMatch: 'full' },
       { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
     ],
   },

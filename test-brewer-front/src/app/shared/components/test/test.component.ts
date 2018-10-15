@@ -27,7 +27,7 @@ export class TestComponent implements OnInit {
     private authService: AuthenticationService,
     private testService: TestService,
     private submissionService: SubmissionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
