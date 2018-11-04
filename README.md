@@ -1,7 +1,7 @@
 ![Test Brewer Logo](http://oi64.tinypic.com/1zcfpg5.jpg)
 
 # Test Brewer
-*Web Programming, PMF CS*
+*Web Programming, PMF Nis: CS*
 ### Contributors
 - Miodrag Mikic
 - Igor Stosic
@@ -15,7 +15,7 @@ Participate in or create simple online tests.
 - Different question types (Checkbox, Radio, Text)
 - Categories to classify tests (Admins can manipulate categories)
 - Automatic grading of tests
-- Import and export of tests (PDF, XSLX, TXT)
+- Import and export of tests
 - Host tests in specific time interval
 
 ## Frameworks and Requirements
@@ -24,11 +24,11 @@ Lumen version used: 5.6.3
 
 Requirements:
 
-* PHP version >= 7.1.3
-* Enabled PHP extensions:
+* PHP version >= 7.1.3 with enabled extensions:
 	* OpenSSL
 	* PDO
 	* Mbstring
+* Composer
 
 #### Front End: Angular - TypeScript Front End Framework by Google
 Angular CLI version used: 6.0.8
