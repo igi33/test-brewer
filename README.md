@@ -1,4 +1,4 @@
-![Test Brewer Logo](http://oi64.tinypic.com/1zcfpg5.jpg)
+![Test Brewer Logo](https://raw.githubusercontent.com/igi33/test-brewer/master/Logo.png)
 
 # Test Brewer
 *Web Programming, PMF Nis: CS*
