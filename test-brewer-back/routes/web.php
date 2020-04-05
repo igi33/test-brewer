@@ -11,9 +11,14 @@
 |
 */
 
-// Home Page
+// Home page test
 $router->get('/', function () use ($router) {
-    return 'Home Page!';
+    return 'Home page!';
+});
+
+// Generate random string to put as APP_KEY in the .env file
+$router->get('/key', function() use ($router) {
+    return \Illuminate\Support\Str::random(32);
 });
 
 // Store User --> Signup
